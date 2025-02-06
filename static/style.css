@@ -132,6 +132,10 @@ body {
     border-radius: 10px;
 }
 
+.produtos img:hover{
+    opacity: 0.5;
+}
+
 .produtos button {
     background-color:  rgb(255, 0, 106);
     border: none;
