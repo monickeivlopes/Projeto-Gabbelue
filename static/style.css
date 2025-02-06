@@ -140,3 +140,15 @@ body {
 .produtos button:hover {
     background-color: pink;
 }
+
+.cabecalho {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px 0; 
+}
+
+.logo img {
+    width: 200px; 
+    height: auto; 
+}
