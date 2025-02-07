@@ -123,6 +123,13 @@ body {
     width: 250px;
     height: 350px;
     text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.produtos:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
 }
 
 .produtos img {
@@ -132,9 +139,6 @@ body {
     border-radius: 10px;
 }
 
-.produtos img:hover{
-    opacity: 0.5;
-}
 
 .produtos button {
     background-color:  rgb(255, 0, 106);
@@ -161,4 +165,83 @@ body {
 .logo img {
     width: 200px; 
     height: auto; 
+}
+
+.rodape {
+    padding: 40px 0;
+    height: 120px;
+    width: 100%;
+}
+
+.rodape-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.rodape-coluna {
+    width: 30%;
+    min-width: 200px;
+    text-align: left;
+}
+
+.rodape-coluna h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.rodape-coluna ul {
+    list-style: none;
+    padding: 0;
+}
+
+.rodape-coluna ul li {
+    margin: 5px 0;
+}
+
+.rodape-coluna ul li a {
+    text-decoration: none;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.rodape-coluna ul li a:hover {
+    color: #222;
+}
+
+.redes-sociais a {
+    display: block;
+    text-decoration: none;
+    color: #666;
+    margin: 5px 0;
+    transition: color 0.3s;
+}
+
+.redes-sociais a:hover {
+    color: #222;
+}
+
+.rodape-copy {
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .rodape-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .rodape-coluna {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
