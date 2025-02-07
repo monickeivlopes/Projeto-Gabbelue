@@ -234,14 +234,110 @@ body {
     padding-bottom: 20px;
 }
 
-@media (max-width: 768px) {
-    .rodape-container {
-        flex-direction: column;
-        text-align: center;
-    }
 
-    .rodape-coluna {
-        width: 100%;
-        margin-bottom: 20px;
-    }
+.secao-informativa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 60px 10%;
+    background-color: #f8f8f8;
 }
+
+.informativa-imagem {
+    flex: 1;
+}
+
+.informativa-imagem img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.informativa-texto {
+    flex: 1;
+    text-align: left;
+}
+
+.informativa-texto h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.informativa-texto p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.botao-informativo {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #c89b5c;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.botao-informativo:hover {
+    background-color: #a37e4b;
+}
+
+
+.banner-informativo {
+    background: url("../static/images/banner-acessorios.jpg") center/cover no-repeat;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+}
+
+.texto-banner {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.texto-banner h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.texto-banner p {
+    font-size: 18px;
+}
+
+
+.conteudo-informativo {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.informacao {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f8f8;
+    border-left: 5px solid #c89b5c;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.informacao h2 {
+    font-size: 22px;
+    color: #333;
+}
+
+.informacao p {
+    font-size: 16px;
+    color: #666;
+}
+
+
+
