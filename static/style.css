@@ -26,7 +26,7 @@ body {
 
 
 .nav-links a:hover{
-    color:rgb(255, 0, 106) ;
+    color:rgb(162, 0, 67) ;
     border-bottom: 1px solid black;
 }
 
@@ -53,7 +53,7 @@ body {
 }
 
 .promo-bar {
-    background-color: rgb(255, 0, 106);
+    background-color: rgb(162, 0, 67);
     color: white;
     text-align: center;
     padding: 8px 0;
@@ -84,6 +84,7 @@ body {
     height: 100%; 
     object-fit: cover; 
     display: block;
+    opacity: 0.5;
 }
 
 .prev, .next {
@@ -141,7 +142,7 @@ body {
 
 
 .produtos button {
-    background-color:  rgb(255, 0, 106);
+    background-color: rgb(162, 0, 67);
     border: none;
     padding: 10px;
     color: white;
@@ -295,11 +296,11 @@ body {
     justify-content: center;
     text-align: center;
     color: #fff;
-    padding: 20px;
+    padding: 10px;
 }
 
 .texto-banner {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgb(162, 0, 67);
     padding: 20px;
     border-radius: 10px;
 }
@@ -324,7 +325,7 @@ body {
     margin-bottom: 30px;
     padding: 20px;
     background: #f8f8f8;
-    border-left: 5px solid #c89b5c;
+    border-left: 5px solid rgb(162, 0, 67);
     border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -338,6 +339,44 @@ body {
     font-size: 16px;
     color: #666;
 }
+
+.pagina-informativa {
+    background: url("../static/images/1.jpg") center/cover fixed no-repeat;
+}
+
+.conteudo-informativo {
+    padding: 50px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.cabecalho, .rodape {
+    background: white;  
+    position: relative;
+    z-index: 10; 
+}
+
+.btn-voltar {
+    display: inline-block;
+    background: #c89b5c;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-voltar:hover {
+    background: #a07b46;
+}
+
+
 
 
 
