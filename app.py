@@ -1,10 +1,18 @@
 from flask import Flask, request, render_template, redirect, url_for, flash
-from flask_login import login_user
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import User
 
 app = Flask(__name__)
 app.secret_key = "CHAVE_SECREATA"
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -33,7 +41,6 @@ def register():
 
     return render_template('register.html')
 
-
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
@@ -56,3 +63,18 @@ def login():
         return redirect(url_for('index'))
 
     return render_template('login.html')
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    flash("You have been logged out.", "info")
+    return redirect(url_for('login'))
+
+@app.route("/index")
+@login_required
+def index():
+    return f"Welcome, {current_user.name}!"
+
+if __name__ == "__main__":
+    app.run(debug=True)
