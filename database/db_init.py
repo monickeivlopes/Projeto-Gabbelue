@@ -8,16 +8,16 @@ conexao = mysql.connector.connect(
 
 cursor = conexao.cursor()
 
-cursor.execute("CREATE DATABASE IF NOT EXISTS db_mais_unidos")
-cursor.execute("USE db_mais_unidos")
+cursor.execute("CREATE DATABASE IF NOT EXISTS db_gabbelue")
+cursor.execute("USE db_gabbelue")
 
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS tb_users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(100) NOT NULL,
-        email VARCHAR(100) UNIQUE NOT NULL,
-        telephone VARCHAR(20) NOT NULL,
-        password VARCHAR(255) NOT NULL
+        usr_id INT AUTO_INCREMENT PRIMARY KEY,
+        usr_name VARCHAR(100) NOT NULL,
+        usr_email VARCHAR(100) UNIQUE NOT NULL,
+        usr_telephone VARCHAR(20) NOT NULL,
+        usr_password VARCHAR(255) NOT NULL
     )
 """)
 
