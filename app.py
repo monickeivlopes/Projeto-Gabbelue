@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from models import User
 
 app = Flask(__name__)
-app.secret_key = "CHAVE_SECREATA"
+app.secret_key = "CHAVE_SECRETA"
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -25,18 +25,18 @@ def register():
 
         existing_user = User.get_by_email(email)
         if existing_user:
-            flash("Email already in use", "error")
+            flash("E-mail já está em uso!", "error")
             return render_template('register.html')
 
         if password != confirm_password:
-            flash("Passwords do not match", "error")
+            flash("As senhas não coincidem!", "error")
             return render_template('register.html')
 
         hashed_password = generate_password_hash(password)
 
         User.create(name=name, email=email, telephone=telephone, password=hashed_password)
 
-        flash("Registration successful! Please login.", "success")
+        flash("Cadastro realizado com sucesso! Faça login.", "success")
         return redirect(url_for('login'))
 
     return render_template('register.html')
@@ -50,16 +50,16 @@ def login():
         user = User.get_by_email(email)
 
         if not user:
-            flash("E-mail not registered!", "error")
+            flash("E-mail não cadastrado!", "error")
             return render_template('login.html')
 
         if not check_password_hash(user.password, senha):
-            flash("Incorrect password!", "error")
+            flash("Senha incorreta!", "error")
             return render_template('login.html')
 
         login_user(user, remember=True)
 
-        flash("Login successful!", "success")
+        flash("Login realizado com sucesso!", "success")
         return redirect(url_for('index'))
 
     return render_template('login.html')
@@ -68,13 +68,38 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash("You have been logged out.", "info")
+    flash("Você saiu da sua conta.", "info")
     return redirect(url_for('login'))
 
-@app.route("/index")
+@app.route("/")
 @login_required
 def index():
-    return f"Welcome, {current_user.name}!"
+    return render_template('index.html')
+
+@app.route("/conjuntos")
+@login_required
+def conjuntos():
+    return render_template('conjuntos.html')
+
+@app.route("/brincos")
+@login_required
+def brincos():
+    return render_template('brincos.html')
+
+@app.route("/colares")
+@login_required
+def colares():
+    return render_template('colares.html')
+
+@app.route("/pulseiras")
+@login_required
+def pulseiras():
+    return render_template('pulseiras.html')
+
+@app.route("/aneis")
+@login_required
+def aneis():
+    return render_template('aneis.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
