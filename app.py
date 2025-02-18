@@ -20,6 +20,11 @@ def load_user(user_id):
 def carrinho():
     return render_template('carrinho.html')
 
+@app.route("/add_carrinho", methods=['GET', 'POST'])
+@login_required
+def add_carrinho():
+    return render_template('add_carrinho.html')
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if request.method == "POST":

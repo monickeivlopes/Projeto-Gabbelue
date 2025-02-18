@@ -133,6 +133,10 @@ body {
     text-decoration: none;
 }
 
+.secao-produtos input {
+    display: none;
+}
+
 .produtos-container {
     display: flex;
     justify-content: center;
