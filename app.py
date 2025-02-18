@@ -14,6 +14,12 @@ login_manager.login_view = "login"
 def load_user(user_id):
     return User.get(user_id)
 
+
+@app.route("/carrinho", methods=['GET', 'POST'])
+@login_required
+def carrinho():
+    return render_template('carrinho.html')
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if request.method == "POST":
@@ -71,7 +77,7 @@ def logout():
     flash("Você saiu da sua conta.", "info")
     return redirect(url_for('login'))
 
-@app.route("/")
+@app.route("/index")
 @login_required
 def index():
     return render_template('index.html')

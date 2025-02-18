@@ -84,7 +84,7 @@ body {
     height: 100%; 
     object-fit: cover; 
     display: block;
-    opacity: 0.5;
+    opacity: .8;
 }
 
 .prev, .next {
@@ -223,6 +223,13 @@ body {
 
 .redes-sociais a:hover {
     color: #222;
+}
+
+button a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .rodape-copy {
