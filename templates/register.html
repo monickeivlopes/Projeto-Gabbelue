@@ -87,3 +87,28 @@
                     &copy; 2025 Gabbelue - Todos os direitos reservados.
                 </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const senha = document.getElementById('password');
+        const confirmarSenha = document.getElementById('confirm_password');
+        function validarSenhas() {
+            let mensagemErro = '';
+            if (senha.value.length < 8) {
+                mensagemErro = 'A senha precisa ter pelo menos 8 caracteres!';
+                senha.setCustomValidity(mensagemErro);
+            } else {
+                senha.setCustomValidity('');
+            }
+            if (confirmarSenha.value && senha.value !== confirmarSenha.value) {
+                mensagemErro = 'As senhas precisam ser iguais!';
+                confirmarSenha.setCustomValidity(mensagemErro);
+            } else {
+                confirmarSenha.setCustomValidity('');
+            }
+        }
+        senha.addEventListener('input', validarSenhas);
+        confirmarSenha.addEventListener('input', validarSenhas);
+    </script>
+</body>
+</html>
