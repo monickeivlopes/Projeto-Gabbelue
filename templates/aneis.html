@@ -27,14 +27,16 @@
             <a href="{{ url_for('pulseiras') }}">PULSEIRAS</a>
             <a href="{{ url_for('aneis') }}">ANÉIS</a>
         </div>
-       
         <div class="icons">
+            
             <i>&#9829;</i> 
             <i>&#128100;</i> 
-            <i>&#128722;</i> 
-        </div>
+            <a href="/carrinho"><button><i>&#128722;</i></button></a>
+            
+            <i><form action="{{url_for('logout')}}">
+                <button id="sair">Sair</button>
+            </form></i> 
     </nav>
-
     <div class="secao-produtos">
         <h2>ANÉIS</h2>
         <div class="produtos-container">

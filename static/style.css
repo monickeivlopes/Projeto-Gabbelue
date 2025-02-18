@@ -21,8 +21,13 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 15px;
+    justify-content: flex-end; /* Move os links para a direita */
+    align-items: center;
+    gap: 20px; /* Ajusta o espaçamento entre os links */
+    margin-right: 50px; /* Adiciona uma margem à direita para melhor posicionamento */
 }
+
+
 
 
 .nav-links a:hover{
@@ -50,6 +55,20 @@ body {
 .icons i {
     margin: 0 5px;
     cursor: pointer;
+}
+.icons button{
+    background-color: white;
+    border: 0;
+}
+.icons #sair{
+    background-color: rgb(162, 0, 67);
+    color: white;
+    border: none;
+}
+.icons #sair:hover{
+    color: rgb(162, 0, 67);
+    background-color: white;
+    border: 2px solid rgb(162, 0, 67);
 }
 
 .promo-bar {
@@ -84,7 +103,7 @@ body {
     height: 100%; 
     object-fit: cover; 
     display: block;
-    opacity: .8;
+    opacity: 0.5;
 }
 
 .prev, .next {
@@ -108,6 +127,10 @@ body {
 .secao-produtos {
     padding: 20px;
     text-align: center;
+}
+.secao-produtos a {
+    color: white;
+    text-decoration: none;
 }
 
 .produtos-container {
@@ -223,13 +246,6 @@ body {
 
 .redes-sociais a:hover {
     color: #222;
-}
-
-button a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
 }
 
 .rodape-copy {
@@ -383,7 +399,224 @@ button a {
     background: #a07b46;
 }
 
+.cadastro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
 
+.cadastro-box {
+    background-color: #a20043;
+    color: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
 
+.cadastro-box:hover {
+    transform: translateY(-5px);
+}
 
+.cadastro-box h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
 
+.cadastro-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cadastro-box label {
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.cadastro-box input {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: border 0.3s ease-in-out;
+}
+
+.cadastro-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.cadastro-box input:focus {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.cadastro-box input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+.cadastro-box button {
+    background: linear-gradient(135deg, #ff4f8b, #a20043);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.cadastro-box button:hover {
+    background: linear-gradient(135deg, #ff7fa3, #d40050);
+    transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+    .cadastro-box {
+        padding: 25px;
+    }
+
+    .cadastro-box h2 {
+        font-size: 20px;
+    }
+
+    .cadastro-box input {
+        font-size: 14px;
+    }
+
+    .cadastro-box button {
+        font-size: 14px;
+    }
+}
+
+/* Container do login */
+.login-container, .register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    padding: 20px;
+   
+}
+.register-container {
+    
+    margin-top: 5%;
+}
+.login-box {
+    background-color: #a20043;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.login-box:hover {
+    transform: translateY(-5px);
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: white;
+}
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-box label {
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.login-box input {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: border 0.3s ease-in-out;
+}
+
+.login-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.login-box input:focus {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.login-box button {
+    background: linear-gradient(135deg, #ff4f8b, #a20043);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.login-box button:hover {
+    background: linear-gradient(135deg, #ff7fa3, #d40050);
+    transform: scale(1.05);
+}
+
+/* Link de cadastro */
+.login-box p {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.login-box a {
+    color: #ffb6c1;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.login-box a:hover {
+    color: white;
+}
+.error{
+    color: white;
+}
+
+@media (max-width: 480px) {
+    .login-box {
+        padding: 25px;
+    }
+
+    .login-box h2 {
+        font-size: 20px;
+    }
+
+    .login-box input {
+        font-size: 14px;
+    }
+
+    .login-box button {
+        font-size: 14px;}
+
+}

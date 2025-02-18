@@ -47,7 +47,7 @@ def register():
 
     return render_template('register.html')
 
-@app.route("/login", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
         email = request.form.get('email')
@@ -107,5 +107,10 @@ def pulseiras():
 def aneis():
     return render_template('aneis.html')
 
+
+@app.route("/info")
+@login_required
+def info():
+    return render_template('infos.html')
 if __name__ == "__main__":
     app.run(debug=True)

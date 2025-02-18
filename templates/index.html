@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -26,9 +27,14 @@
             <a href="{{ url_for('aneis') }}">ANÉIS</a>
         </div>
         <div class="icons">
+            
             <i>&#9829;</i> 
             <i>&#128100;</i> 
-            <i>&#128722;</i> 
+            <a href="/carrinho"><button><i>&#128722;</i></button></a>
+            
+            <i><form action="{{url_for('logout')}}">
+                <button id="sair">Sair</button>
+            </form></i> 
     </nav>
 
     <div class="promo-bar">Acompanhe as melhores tendências</div>
@@ -39,6 +45,8 @@
             <div class="slide"><img src="../static/images/2.jpg" alt="Imagem 2"></div>
             <div class="slide"><img src="../static/images/3.jpg" alt="Imagem 3"></div>
             <div class="slide"><img src="../static/images/4.jpg" alt="Imagem 3"></div>
+            
+            
         </div>
         <div class="prev" onclick="moveSlide(-1)">&#10094;</div>
         <div class="next" onclick="moveSlide(1)">&#10095;</div>
@@ -79,7 +87,7 @@
         <div class="informativa-texto">
             <h2>Veja como seus acessórios podem influenciar sua imagem</h2>
             <p>Os acessórios são mais do que meros detalhes — eles expressam personalidade, elegância e autoconfiança. A escolha da peça certa pode transformar seu visual e impactar sua presença.</p>
-            <a href="infos.html" class="botao-informativo">Saiba Mais</a>
+            <a href="/info" class="botao-informativo">Saiba Mais</a>
         </div>
     </section>
             
