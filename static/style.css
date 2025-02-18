@@ -507,6 +507,7 @@ body {
     align-items: center;
     height: 90vh;
     padding: 20px;
+    color: white;
    
 }
 .register-container {
@@ -567,8 +568,8 @@ body {
 }
 
 .login-box button {
-    background: linear-gradient(135deg, #ff4f8b, #a20043);
-    color: white;
+    background: linear-gradient(135deg, #ffffff, #ffffff);
+    color: #ff2f7f;
     border: none;
     padding: 12px;
     font-size: 16px;
@@ -579,8 +580,9 @@ body {
 }
 
 .login-box button:hover {
-    background: linear-gradient(135deg, #ff7fa3, #d40050);
-    transform: scale(1.05);
+    background: linear-gradient(105deg, #ff2f7f, #ff2f7f);
+    transform: scale(0.9);
+    color:white;
 }
 
 /* Link de cadastro */
