@@ -23,6 +23,14 @@ def carrinho():
 
     return render_template('carrinho.html',carrinho=carrinho)
 
+@app.route("/favoritos", methods=['GET', 'POST'])
+@login_required
+def favoritos():
+    user_id = current_user.id
+    favoritos = Produto.select_favoritos(user_id)
+
+    return render_template('favoritos.html',favoritos=favoritos)
+
 @app.route("/excluir_carrinho/<int:id>", methods=['GET', 'POST'])
 @login_required
 def excluir_carrinho(id):
@@ -38,6 +46,22 @@ def add_carrinho():
     Produto.add_carrinho(produto,user_id)
     carrinho = Produto.select_carrinho(user_id)
     return render_template('carrinho.html',carrinho=carrinho)
+
+@app.route("/add_favoritos", methods=['GET', 'POST'])
+def add_favoritos():   
+    user_id = current_user.id
+    produto = request.form['id']
+    Produto.add_favoritos(produto,user_id)
+    favoritos = Produto.select_favoritos(user_id)
+    return render_template('favoritos.html',favoritos=favoritos)
+
+@app.route("/excluir_favoritos/<int:id>", methods=['GET', 'POST'])
+@login_required
+def excluir_favoritos(id):
+    if request.method=='POST':
+        Produto.excluir_favoritos(id)
+    
+    return redirect(url_for('favoritos'))
     
 
     

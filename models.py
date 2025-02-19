@@ -147,7 +147,7 @@ class Produto():
         cursor = conexao.cursor()
         cursor.execute(
             "update tb_produtos set pro_favoritos=False, pro_usr_id=NULL where pro_id=%s;",
-            (pro_id)
+            (pro_id,)
         )
         conexao.commit()
         cursor.close()

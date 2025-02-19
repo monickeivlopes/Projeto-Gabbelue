@@ -167,8 +167,22 @@ body {
     border-radius: 10px;
 }
 
+.produtos #icon{
+    width: 30px;
+    height:30px;
+    
+    
+}
+.produtos #icon-button{
+    width: 30px;
+    height:30px;
+    margin-left: 90%;
+    border: 0;
+   background-color: white;
+}
 
-.produtos button {
+.produtos #button{
+    
     background-color: rgb(162, 0, 67);
     border: none;
     padding: 10px;
@@ -179,7 +193,10 @@ body {
     margin-top: 10px;
 }
 
-.produtos button:hover {
+
+
+
+.produtos #button:hover {
     background-color: pink;
 }
 

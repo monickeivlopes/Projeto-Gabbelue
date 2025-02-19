@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho | GABBELUE </title>
+    <title>Favoritos | GABBELUE </title>
     <link rel="stylesheet" href="../static/style.css">
     <link rel="icon" href="../static/images/favicon.ico">
 </head>
@@ -35,14 +35,14 @@
                 <button id="sair">Sair</button>
             </form></i> 
     </nav>
-    <h1>Carrinho</h1>
+    <h1>Favoritos</h1>
     <div class="carrinho-produto">
         <ul>
-            {%for car in carrinho%}
-            <p>Nome: {{car[1]}}<p>
-            <p>Preço: {{car[5]}}<p>
-            <img src="{{car[6]}}" alt="">
-            <form action="{{url_for('excluir_carrinho',id=car[0])}}" method="post">
+            {%for fav in favoritos%}
+            <p>Nome: {{fav[1]}}<p>
+            <p>Preço: {{fav[5]}}<p>
+            <img src="{{fav[6]}}" alt="">
+            <form action="{{url_for('excluir_favoritos',id=fav[0])}}" method="post">
                 <button>Excluir</button>
             </form>
             {%endfor%}

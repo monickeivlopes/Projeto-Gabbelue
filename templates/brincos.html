@@ -30,8 +30,8 @@
         </div>
         <div class="icons">
             
-            <i>&#9829;</i> 
-            <i>&#128100;</i> 
+            <i>&#128100;</i>
+            <a href="/favoritos"><button><i>&#9829;</i> </button></a> 
             <a href="/carrinho"><button><i>&#128722;</i></button></a>
             
             <i><form action="{{url_for('logout')}}">
@@ -47,7 +47,11 @@
                 <strong>R$ 39,90</strong>
                 <form action="{{url_for('add_carrinho')}}" method="post">
                     <input type="number" name="id" value="7">
-                    <button>ADICIONAR AO CARRINHO</button>
+                   <button id="button">ADICIONAR AO CARRINHO</button>
+                </form>
+                <form action="{{url_for('add_favoritos')}}" method="post">
+                    <input type="number" name="id" value="7">
+                    <button id="icon-button"><img id="icon" src="../static/images/image2.png" alt=""></button>
                 </form>
             </div>
 
@@ -57,7 +61,11 @@
                 <strong>R$ 42,00</strong>
                 <form action="{{url_for('add_carrinho')}}" method="post">
                     <input type="number" name="id" value="8">
-                    <button>ADICIONAR AO CARRINHO</button>
+                   <button id="button">ADICIONAR AO CARRINHO</button>
+                </form>
+                <form action="{{url_for('add_favoritos')}}" method="post">
+                    <input type="number" name="id" value="8">
+                    <button id="icon-button"><img id="icon" src="../static/images/image2.png" alt=""></button>
                 </form>
             </div>
 
@@ -67,7 +75,11 @@
                 <strong>R$ 42,00</strong>
                 <form action="{{url_for('add_carrinho')}}" method="post">
                     <input type="number" name="id" value="9">
-                    <button>ADICIONAR AO CARRINHO</button>
+                   <button id="button">ADICIONAR AO CARRINHO</button>
+                </form>
+                <form action="{{url_for('add_favoritos')}}" method="post">
+                    <input type="number" name="id" value="9">
+                    <button id="icon-button"><img id="icon" src="../static/images/image2.png" alt=""></button>
                 </form>
             </div>
 
@@ -77,7 +89,11 @@
                 <strong>R$ 49,99</strong>
                 <form action="{{url_for('add_carrinho')}}" method="post">
                     <input type="number" name="id" value="10">
-                    <button>ADICIONAR AO CARRINHO</button>
+                   <button id="button">ADICIONAR AO CARRINHO</button>
+                </form>
+                <form action="{{url_for('add_favoritos')}}" method="post">
+                    <input type="number" name="id" value="10">
+                    <button id="icon-button"><img id="icon" src="../static/images/image2.png" alt=""></button>
                 </form>
             </div>
 
@@ -87,7 +103,11 @@
                 <strong>R$ 49,99</strong>
                 <form action="{{url_for('add_carrinho')}}" method="post">
                     <input type="number" name="id" value="11">
-                    <button>ADICIONAR AO CARRINHO</button>
+                   <button id="button">ADICIONAR AO CARRINHO</button>
+                </form>
+                <form action="{{url_for('add_favoritos')}}" method="post">
+                    <input type="number" name="id" value="11">
+                    <button id="icon-button"><img id="icon" src="../static/images/image2.png" alt=""></button>
                 </form>
             </div>
 
@@ -97,7 +117,11 @@
                 <strong>R$ 51,99</strong>
                 <form action="{{url_for('add_carrinho')}}" method="post">
                     <input type="number" name="id" value="12">
-                    <button>ADICIONAR AO CARRINHO</button>
+                   <button id="button">ADICIONAR AO CARRINHO</button>
+                </form>
+                <form action="{{url_for('add_favoritos')}}" method="post">
+                    <input type="number" name="id" value="12">
+                    <button id="icon-button"><img id="icon" src="../static/images/image2.png" alt=""></button>
                 </form>
             </div>
 
