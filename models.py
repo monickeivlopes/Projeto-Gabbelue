@@ -110,8 +110,8 @@ class Produto():
         conexao = obter_conexao()
         cursor = conexao.cursor()
         cursor.execute(
-            "update tb_produtos set pro_carrinho=False, pro_usr_id=NULL where pro_id=%s;",
-            (pro_id)
+            "UPDATE tb_produtos SET pro_carrinho = False, pro_usr_id = NULL WHERE pro_id =%s ;",
+            (pro_id,)
         )
         conexao.commit()
         cursor.close()

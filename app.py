@@ -26,7 +26,7 @@ def carrinho():
 @app.route("/excluir_carrinho/<int:id>", methods=['GET', 'POST'])
 @login_required
 def excluir_carrinho(id):
-    if request.method=='post':
+    if request.method=='POST':
         Produto.excluir_carrinho(id)
     
     return redirect(url_for('carrinho'))
