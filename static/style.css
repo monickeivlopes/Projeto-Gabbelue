@@ -90,12 +90,14 @@ body {
     display: flex;
     transition: transform 0.5s ease-in-out;
     height: 100%; 
+    
 }
 
 .slide {
     min-width: 100%;
     box-sizing: border-box;
     height: 100%; 
+    background-color: black;
 }
 
 .slide img {
@@ -104,6 +106,7 @@ body {
     object-fit: cover; 
     display: block;
     opacity: 0.5;
+    
 }
 
 .prev, .next {
@@ -167,7 +170,7 @@ body {
     border-radius: 10px;
 }
 
-.produtos #icon{
+#icon{
     width: 30px;
     height:30px;
     
