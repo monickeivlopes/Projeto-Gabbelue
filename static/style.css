@@ -485,6 +485,16 @@ body {
     background: linear-gradient(135deg, #ff7fa3, #d40050);
     transform: scale(1.05);
 }
+.carrinho-produto{
+    width: 100%;
+    display: flex;
+    
+}
+.carrinho-produto img{
+    max-width: 80px;
+    max-height: 80px;
+    
+}
 
 @media (max-width: 480px) {
     .cadastro-box {

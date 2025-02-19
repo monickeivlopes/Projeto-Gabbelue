@@ -42,7 +42,7 @@
             <p>Nome: {{car[1]}}<p>
             <p>Preço: {{car[5]}}<p>
             <img src="{{car[6]}}" alt="">
-            <form action="{{url_for('excluir_carrinho',id=car[0])}}" method="post">
+            <form action="{{url_for(excluir_carrinho,id={{car[0]}})}}" method="post">
                 <button>Excluir</button>
             </form>
             {%endfor%}

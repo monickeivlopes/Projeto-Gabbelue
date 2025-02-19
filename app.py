@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import User
+from models import User, Produto
 
 app = Flask(__name__)
 app.secret_key = "CHAVE_SECRETA"
@@ -18,12 +18,29 @@ def load_user(user_id):
 @app.route("/carrinho", methods=['GET', 'POST'])
 @login_required
 def carrinho():
-    return render_template('carrinho.html')
+    user_id = current_user.id
+    carrinho = Produto.select_carrinho(user_id)
+
+    return render_template('carrinho.html',carrinho=carrinho)
+
+@app.route("/excluir_carrinho/<int:id>", methods=['GET', 'POST'])
+@login_required
+def excluir_carrinho(id):
+    if request.method=='post':
+        Produto.excluir_carrinho(id)
+    
+    return redirect(url_for('carrinho'))
 
 @app.route("/add_carrinho", methods=['GET', 'POST'])
-@login_required
-def add_carrinho():
-    return render_template('add_carrinho.html')
+def add_carrinho():   
+    user_id = current_user.id
+    produto = request.form['id']
+    Produto.add_carrinho(produto,user_id)
+    carrinho = Produto.select_carrinho(user_id)
+    return render_template('carrinho.html',carrinho=carrinho)
+    
+
+    
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
