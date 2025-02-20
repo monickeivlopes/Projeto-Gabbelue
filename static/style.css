@@ -64,6 +64,10 @@ body {
     background-color: rgb(162, 0, 67);
     color: white;
     border: none;
+    width: 35px;
+    height: 30px;
+    border-radius: 10%;
+
 }
 .icons #sair:hover{
     color: rgb(162, 0, 67);
@@ -170,11 +174,14 @@ body {
     border-radius: 10px;
 }
 
-#icon{
+#icon {
     width: 30px;
-    height:30px;
+    height:30px;  
     
-    
+}
+#icon-head img{
+    width: 25px;
+    height:25px; 
 }
 .produtos #icon-button{
     width: 30px;

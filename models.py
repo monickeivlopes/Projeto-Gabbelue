@@ -70,16 +70,14 @@ class Produto():
         self.user_id = user_id
     
     @staticmethod
-    def get(user_id):
+    def get():
         conexao = obter_conexao()
         cursor = conexao.cursor()
-        cursor.execute("SELECT * FROM tb_produtos WHERE usr_id = %s", (user_id,))
-        result = cursor.fetchone()
+        cursor.execute("SELECT * FROM tb_produtos")
+        result = cursor.fetchall()
         cursor.close()
         conexao.close()
-        if result:
-            return User(*result) 
-        return None
+        return result
     
     @staticmethod
     def select_carrinho(user_id):

@@ -23,6 +23,7 @@ def carrinho():
 
     return render_template('carrinho.html',carrinho=carrinho)
 
+
 @app.route("/favoritos", methods=['GET', 'POST'])
 @login_required
 def favoritos():
@@ -30,6 +31,7 @@ def favoritos():
     favoritos = Produto.select_favoritos(user_id)
 
     return render_template('favoritos.html',favoritos=favoritos)
+
 
 @app.route("/excluir_carrinho/<int:id>", methods=['GET', 'POST'])
 @login_required
@@ -39,6 +41,7 @@ def excluir_carrinho(id):
     
     return redirect(url_for('carrinho'))
 
+
 @app.route("/add_carrinho", methods=['GET', 'POST'])
 def add_carrinho():   
     user_id = current_user.id
@@ -47,24 +50,37 @@ def add_carrinho():
     carrinho = Produto.select_carrinho(user_id)
     return render_template('carrinho.html',carrinho=carrinho)
 
-@app.route("/add_favoritos", methods=['GET', 'POST'])
-def add_favoritos():   
-    user_id = current_user.id
-    produto = request.form['id']
-    Produto.add_favoritos(produto,user_id)
-    favoritos = Produto.select_favoritos(user_id)
-    return render_template('favoritos.html',favoritos=favoritos)
 
-@app.route("/excluir_favoritos/<int:id>", methods=['GET', 'POST'])
+@app.route("/add_favoritos", methods=['POST'])
+@login_required
+def add_favoritos():
+    user_id = current_user.id
+    produto = request.form.get('id')
+
+    if not produto:
+        flash("Erro: Produto não especificado.", "danger")
+        return redirect(url_for('exibir_produtos'))
+
+    produto = int(produto)
+    favoritos = Produto.select_favoritos(user_id)
+
+    if any(produto == fav[0] for fav in favoritos):
+        Produto.excluir_favoritos(produto)
+        flash("Produto removido dos favoritos.", "success")
+    else:
+        Produto.add_favoritos(produto, user_id)
+        flash("Produto adicionado aos favoritos!", "success")
+
+    return redirect(url_for('favoritos'))
+
+
+@app.route("/excluir_favoritos/<int:id>", methods=['POST'])
 @login_required
 def excluir_favoritos(id):
-    if request.method=='POST':
-        Produto.excluir_favoritos(id)
-    
+    Produto.excluir_favoritos(id)
+    flash("Produto removido dos favoritos.", "success")
     return redirect(url_for('favoritos'))
-    
 
-    
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -93,6 +109,7 @@ def register():
 
     return render_template('register.html')
 
+
 @app.route("/", methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
@@ -116,6 +133,7 @@ def login():
 
     return render_template('login.html')
 
+
 @app.route("/logout")
 @login_required
 def logout():
@@ -123,30 +141,36 @@ def logout():
     flash("Você saiu da sua conta.", "info")
     return redirect(url_for('login'))
 
+
 @app.route("/index")
 
 def index():
     return render_template('index.html')
+
 
 @app.route("/conjuntos")
 @login_required
 def conjuntos():
     return render_template('conjuntos.html')
 
+
 @app.route("/brincos")
 @login_required
 def brincos():
     return render_template('brincos.html')
+
 
 @app.route("/colares")
 @login_required
 def colares():
     return render_template('colares.html')
 
+
 @app.route("/pulseiras")
 @login_required
 def pulseiras():
     return render_template('pulseiras.html')
+
 
 @app.route("/aneis")
 @login_required
