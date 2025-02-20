@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Anéis | GABBELUE</title>
+        <link rel="stylesheet" href="../static/style.css">
+        <link rel="icon" href="../static/images/favicon.ico">
+    </head>
+    
+    <body>
+        <div class="top-bar">BEM-VINDO À SUA LOJA FAVORITA DE ACESSÓRIOS</div>
+    
+        <div class="cabecalho">
+            <div class="logo">
+                <img src="../static/images/logo.png" alt="Logo">
+            </div>
+        </div>    
+    
+        <nav class="nav-bar">
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}">HOME</a>
+                <a href="{{ url_for('conjuntos') }}">CONJUNTOS</a>
+                <a href="{{ url_for('brincos') }}">BRINCOS</a>
+                <a href="{{ url_for('colares') }}">COLARES</a>
+                <a href="{{ url_for('pulseiras') }}">PULSEIRAS</a>
+                <a href="{{ url_for('aneis') }}">ANÉIS</a>
+            </div>
+            <div class="icons">
+                
+                <a href="/favoritos"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
+                <a href="/favoritos"><button id="icon-head"><img src="../static/images/image.png" alt=""></button></a> 
+                <a href="/carrinho"><button id="icon-head"><img src="../static/images/carrinho.png" alt=""></button></a>
+                
+                <i><form action="{{url_for('logout')}}">
+                    <button id="sair">Sair</button>
+                </form></i> 
+        </nav>
+        <div class="secao-produtos">
+            <h2>{{produto[1]}}</h2>
+        </div>
+        <div class="produto-id">
+            <img src="{{produto[6]}}" alt="">
+            <p>{{produto[7]}}</p>
+        </div>
+
+    
+</body>
+</html>

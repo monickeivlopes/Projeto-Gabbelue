@@ -28,10 +28,11 @@
         </div>
         <div class="icons">
             
-            
+            <div class="heart"></div>
             <a href="/favoritos"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
             <a href="/favoritos"><button id="icon-head"><img src="../static/images/image.png" alt=""></button></a> 
             <a href="/carrinho"><button id="icon-head"><img src="../static/images/carrinho.png" alt=""></button></a>
+            
             
             <i><form action="{{url_for('logout')}}">
                 <button id="sair">Sair</button>
@@ -67,7 +68,7 @@
                 </form>
                 <form action="{{url_for('add_favoritos')}}" method="post">
                     <input type="number" name="id" value="23">
-                    <button id="icon-button"><img id="icon" src="../static/images/image2.png" alt=""></button>
+                    <button id="icon-button"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
                 </form>
                 
                 
@@ -82,7 +83,7 @@
                 </form>
                 <form action="{{url_for('add_favoritos')}}" method="post">
                     <input type="number" name="id" value="13">
-                    <button id="icon-button"><img id="icon" src="../static/images/image2.png" alt=""></button>
+                    <button id="icon-button"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
                 </form>
             </div>
             <div class="produtos">
@@ -96,7 +97,7 @@
                 <form action="{{url_for('add_favoritos')}}" method="post">
                     
                     <input type="number" name="id" value="2">
-                    <button id="icon-button"><img id="icon" src="../static/images/image2.png" alt=""></button>
+                    <button id="icon-button"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
                 </form>
             </div>
             <div class="produtos">
@@ -109,7 +110,7 @@
                 </form>
                 <form action="{{url_for('add_favoritos')}}" method="post">
                     <input type="number" name="id" value="7">
-                    <button id="icon-button"><img id="icon" src="../static/images/image2.png" alt=""></button>
+                    <button id="icon-button"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
                 </form>
             </div>
 
