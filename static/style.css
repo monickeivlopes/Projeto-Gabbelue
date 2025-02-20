@@ -616,9 +616,9 @@
 }
 
 .login-box button:hover {
-    background: linear-gradient(105deg, #ff2f7f, #ff2f7f);
-    transform: scale(0.9);
-    color:white;
+    background: linear-gradient(135deg, #ff7fa3, #d40050);
+    transform: scale(1.05);
+    color: white;
 }
 
 /* Link de cadastro */
@@ -657,4 +657,8 @@
     .login-box button {
         font-size: 14px;}
 
+}
+
+.body-inicio{
+    background: linear-gradient(135deg, #ff2f7f, #6a0572);
 }
