@@ -78,6 +78,15 @@ class Produto():
         cursor.close()
         conexao.close()
         return result
+    @staticmethod
+    def get_id(id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("SELECT * FROM tb_produtos where pro_id = %s",(id,))
+        result = cursor.fetchone()
+        cursor.close()
+        conexao.close()
+        return result
     
     @staticmethod
     def select_carrinho(user_id):

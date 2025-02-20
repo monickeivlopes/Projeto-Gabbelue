@@ -66,12 +66,18 @@ def add_favoritos():
 
     if any(produto == fav[0] for fav in favoritos):
         Produto.excluir_favoritos(produto)
+        favorito = Produto.select_favoritos(user_id)
         flash("Produto removido dos favoritos.", "success")
+        sucesso = False
+        return render_template('favoritos.html',sucesso=sucesso,favoritos=favorito)
     else:
+        sucesso = True
         Produto.add_favoritos(produto, user_id)
+        favorito = Produto.select_favoritos(user_id)
         flash("Produto adicionado aos favoritos!", "success")
+        return render_template('favoritos.html',sucesso=sucesso,favoritos=favorito)
 
-    return redirect(url_for('favoritos'))
+    
 
 
 @app.route("/excluir_favoritos/<int:id>", methods=['POST'])
@@ -182,5 +188,15 @@ def aneis():
 @login_required
 def info():
     return render_template('infos.html')
+
+@app.route("/produtos/<int:id>")
+@login_required
+def produtos(id):
+    produtos = Produto.get_id(id)
+    return render_template('produtos.html',produto=produtos)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
+
+
