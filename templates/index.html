@@ -57,24 +57,21 @@
     <div class="secao-produtos">
         <h2>EM DESTAQUE</h2>
         <div class="produtos-container">
-            <div class="produtos">
-                <img src="../static/images/anel1.jpg" alt="Produto 1">
-                <p>Anel Delicado</p>
+            <a href="{{url_for('produtos',id=23)}}"><div class="produtos">
+                <img src="../static/images/anel1.jpg">
+                <p>Anel Delicado Dourado</p>
                 <strong>R$ 35,00</strong>
-    
                 <form action="{{url_for('add_carrinho')}}" method="post">
                     <input type="number" name="id" value="23">
                     <button id="button">ADICIONAR AO CARRINHO</button>
                 </form>
                 <form action="{{url_for('add_favoritos')}}" method="post">
                     <input type="number" name="id" value="23">
-                    <button id="icon-button"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
+                    <button id="icon-button" style="cursor: pointer"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
                 </form>
-                
-                
-            </div>
-            <div class="produtos">
-                <img src="../static/images/colarvivian.jpg" alt="Produto 2">
+            </div></a>
+            <a href="{{url_for('produtos',id=13)}}"><div class="produtos">
+                <img src="../static/images/colarvivian.jpg">
                 <p>Colar Vivian</p>
                 <strong>R$ 92,00</strong>
                 <form action="{{url_for('add_carrinho')}}" method="post">
@@ -83,11 +80,11 @@
                 </form>
                 <form action="{{url_for('add_favoritos')}}" method="post">
                     <input type="number" name="id" value="13">
-                    <button id="icon-button"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
+                    <button id="icon-button" style="cursor: pointer"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
                 </form>
-            </div>
-            <div class="produtos">
-                <img src="../static/images/conjuntolara.jpg" alt="Produto 3">
+            </div></a>
+            <a href="{{url_for('produtos',id=2)}}"><div class="produtos">
+                <img src="../static/images/conjuntolara.jpg" >
                 <p>Conjunto Lara</p>
                 <strong>R$ 115,90</strong>
                 <form action="{{url_for('add_carrinho')}}" method="post">
@@ -95,24 +92,23 @@
                     <button id="button">ADICIONAR AO CARRINHO</button>
                 </form>
                 <form action="{{url_for('add_favoritos')}}" method="post">
-                    
                     <input type="number" name="id" value="2">
-                    <button id="icon-button"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
+                    <button id="icon-button" style="cursor: pointer"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
                 </form>
-            </div>
-            <div class="produtos">
+            </div></a>
+            <a href="{{url_for('produtos',id=7)}}"><div class="produtos">
                 <img src="../static/images/argola1.jpg" alt="Produto 4">
                 <p>Argola Concha</p>
                 <strong>R$ 39,90</strong>
                 <form action="{{url_for('add_carrinho')}}" method="post">
                     <input type="number" name="id" value="7">
-                    <button id="button">ADICIONAR AO CARRINHO</button>
+                   <button id="button">ADICIONAR AO CARRINHO</button>
                 </form>
                 <form action="{{url_for('add_favoritos')}}" method="post">
                     <input type="number" name="id" value="7">
-                    <button id="icon-button"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
+                    <button id="icon-button" style="cursor: pointer"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
                 </form>
-            </div>
+            </div></a>
 
     <section class="secao-informativa">
         <div class="informativa-imagem">

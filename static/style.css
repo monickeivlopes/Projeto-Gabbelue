@@ -150,6 +150,9 @@ body{
     gap: 20px;
     flex-wrap: wrap;
 }
+.produtos-container a{
+    color: black;
+}
 
 .produtos {
     border: 1px solid #ccc;
@@ -750,4 +753,25 @@ body{
 
 .h1-pags{
     text-align: center;
+}
+
+.produto-id{
+    width: 90%;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+}
+.produto-id img{
+    width: 250px;
+    height: 250px;
+    margin-right: 2%;
+    border-radius: 20px;
+}
+.produto-info p{
+    width: 40%;
+    font-size: larger;
 }

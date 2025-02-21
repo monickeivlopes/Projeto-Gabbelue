@@ -13,7 +13,7 @@
     
         <div class="cabecalho">
             <div class="logo">
-                <img src="../static/images/logo.png" alt="Logo">
+                <a href="/index"><img src="../static/images/logo.png" alt="Logo Gabbelue"></a>
             </div>
         </div>    
     
@@ -41,7 +41,10 @@
         </div>
         <div class="produto-id">
             <img src="{{produto[6]}}" alt="">
-            <p>{{produto[7]}}</p>
+            <div class="produto-info">
+                <p>{{produto[7]}}</p> <br>
+                <p>Preço unitário: <strong>{{produto[5]}} R$</strong> </p>
+            </div>
         </div>
 
     
