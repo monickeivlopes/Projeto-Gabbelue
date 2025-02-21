@@ -35,18 +35,71 @@
                 <button id="sair">Sair</button>
             </form></i>  
     </nav>
-    <h1>Carrinho</h1>
+    <h1 class="h1-pags">CARRINHO</h1>
     <div class="carrinho-produto">
         <ul>
-            {%for car in carrinho%}
-            <p>Nome: {{car[1]}}<p>
-            <p>Preço: {{car[5]}}<p>
-            <img src="{{car[6]}}" alt="">
-            <form action="{{url_for('excluir_carrinho',id=car[0])}}" method="post">
-                <button>Excluir</button>
-            </form>
-            {%endfor%}
+            {% for car in carrinho %}
+            <li>
+                <img src="{{ car[6] }}" alt="Imagem do produto">
+                <div class="produto-info">
+                    <p>{{ car[1] }}</p>
+                    <div class="quantidade">
+                        <button class="decremento" data-id="{{ car[0] }}">-</button>
+                        <input type="text" value="1" id="quantidade-{{ car[0] }}" readonly>
+                        <button class="incremento" data-id="{{ car[0] }}">+</button>
+                    </div>
+                </div>
+                <p class="preco" id="preco-{{ car[0] }}" data-unit-price="{{ car[5] }}">R${{ car[5] }}</p>
+                <form action="{{ url_for('excluir_carrinho', id=car[0]) }}" method="post">
+                    <button class="excluir">🗑️</button>
+                </form>
+            </li>
+            {% endfor %}
         </ul>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".incremento").forEach(button => {
+                button.addEventListener("click", function() {
+                    let productId = this.getAttribute("data-id");
+                    let quantityInput = document.getElementById(`quantidade-${productId}`);
+                    let precoElement = document.getElementById(`preco-${productId}`);
+        
+
+                    let precoUnitario = parseFloat(precoElement.getAttribute("data-unit-price"));
+        
+                    let quantidadeAtual = parseInt(quantityInput.value);
+                    quantidadeAtual++;
+                    quantityInput.value = quantidadeAtual;
+        
+
+                    let novoPreco = (precoUnitario * quantidadeAtual).toFixed(2);
+                    precoElement.innerText = `R$${novoPreco}`;
+                });
+            });
+        
+            document.querySelectorAll(".decremento").forEach(button => {
+                button.addEventListener("click", function() {
+                    let productId = this.getAttribute("data-id");
+                    let quantityInput = document.getElementById(`quantidade-${productId}`);
+                    let precoElement = document.getElementById(`preco-${productId}`);
+        
+
+                    let precoUnitario = parseFloat(precoElement.getAttribute("data-unit-price"));
+        
+                    let quantidadeAtual = parseInt(quantityInput.value);
+                    if (quantidadeAtual > 1) {
+                        quantidadeAtual--;
+                        quantityInput.value = quantidadeAtual;
+
+                        let novoPreco = (precoUnitario * quantidadeAtual).toFixed(2);
+                        precoElement.innerText = `R$${novoPreco}`;
+                    }
+                });
+            });
+        });
+        </script>
+        
+            
 </body>
 </html>

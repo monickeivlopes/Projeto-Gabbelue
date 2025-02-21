@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favoritos | GABBELUE </title>
+    <title>Favoritos | GABBELUE</title>
     <link rel="stylesheet" href="../static/style.css">
     <link rel="icon" href="../static/images/favicon.ico">
 </head>
@@ -26,26 +26,31 @@
             <a href="{{ url_for('aneis') }}">ANÉIS</a>
         </div>
         <div class="icons">
-            
             <a href="/favoritos"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
             <a href="/favoritos"><button id="icon-head"><img src="../static/images/image.png" alt=""></button></a> 
             <a href="/carrinho"><button id="icon-head"><img src="../static/images/carrinho.png" alt=""></button></a>
-            
-            <i><form action="{{url_for('logout')}}">
+            <form action="{{ url_for('logout') }}">
                 <button id="sair">Sair</button>
-            </form></i> 
+            </form> 
+        </div>
     </nav>
-    <h1>Favoritos</h1>
+
+    <h1 class="h1-pags">Favoritos</h1>
+
     <div class="carrinho-produto">
         <ul>
-            {%for fav in favoritos%}
-            <p>Nome: {{fav[1]}}<p>
-            <p>Preço: {{fav[5]}}<p>
-            <img src="{{fav[6]}}" alt="">
-            <form action="{{url_for('excluir_favoritos',id=fav[0])}}" method="post">
-                <button>Excluir</button>
-            </form>
-            {%endfor%}
+            {% for fav in favoritos %}
+            <li class="produto-item">
+                <img src="{{ fav[6] }}" alt="Imagem do Produto">
+                <div class="produto-info">
+                    <p class="produto-nome">{{ fav[1] }}</p>
+                    <p class="preco">R$ {{ fav[5] }}</p>
+                </div>
+                <form action="{{ url_for('excluir_favoritos', id=fav[0]) }}" method="post">
+                    <button class="excluir">🗑️</button>
+                </form>
+            </li>
+            {% endfor %}
         </ul>
     </div>
 </body>
