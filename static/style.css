@@ -343,7 +343,7 @@ body{
 
 
 .banner-informativo {
-    background: url("../static/images/modelo.jpg") center/cover no-repeat;
+    background: url("../static/images/banner-informativo.jpg") center/cover no-repeat;
     height: 300px;
     display: flex;
     align-items: center;
