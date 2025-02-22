@@ -40,7 +40,7 @@
         <ul>
             {% for car in carrinho %}
             <li>
-                <img src="{{ car[6] }}" alt="Imagem do produto">
+                <img src="{{ car[4] }}" alt="Imagem do produto">
                 <div class="produto-info">
                     <p>{{ car[1] }}</p>
                     <div class="quantidade">
@@ -49,7 +49,7 @@
                         <button class="incremento" data-id="{{ car[0] }}">+</button>
                     </div>
                 </div>
-                <p class="preco" id="preco-{{ car[0] }}" data-unit-price="{{ car[5] }}">R${{ car[5] }}</p>
+                <p class="preco" id="preco-{{ car[0] }}" data-unit-price="{{ car[3] }}">R${{ car[3] }}</p>
                 <form action="{{ url_for('excluir_carrinho', id=car[0]) }}" method="post">
                     <button class="excluir">🗑️</button>
                 </form>

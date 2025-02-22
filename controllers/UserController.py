@@ -7,15 +7,15 @@ from .. import app, login_manager
 
 
 @login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
+def load_user(usuario_id):
+    return User.get(usuario_id)
 
 
 @app.route("/carrinho", methods=['GET', 'POST'])
 @login_required
 def carrinho():
-    user_id = current_user.id
-    carrinho = Produto.select_carrinho(user_id)
+    usuario_id = current_user.id
+    carrinho = Produto.select_carrinho(usuario_id)
 
     return render_template('carrinho.html',carrinho=carrinho)
 
@@ -23,8 +23,8 @@ def carrinho():
 @app.route("/favoritos", methods=['GET', 'POST'])
 @login_required
 def favoritos():
-    user_id = current_user.id
-    favoritos = Produto.select_favoritos(user_id)
+    usuario_id = current_user.id
+    favoritos = Produto.select_favoritos(usuario_id)
 
     return render_template('favoritos.html',favoritos=favoritos)
 
@@ -39,36 +39,36 @@ def excluir_carrinho(id):
 
 @app.route("/add_carrinho", methods=['GET', 'POST'])
 def add_carrinho():   
-    user_id = current_user.id
+    usuario_id = current_user.id
     produto = request.form['id']
-    Produto.add_carrinho(produto, user_id)
-    carrinho = Produto.select_carrinho(user_id)
+    Produto.add_carrinho(produto, usuario_id)
+    carrinho = Produto.select_carrinho(usuario_id)
     return render_template('carrinho.html',carrinho=carrinho)
 
 
 @app.route("/add_favoritos", methods=['POST'])
 @login_required
 def add_favoritos():
-    user_id = current_user.id
+    usuario_id = current_user.id
     produto = request.form.get('id')
 
     if not produto:
         flash("Erro: Produto não especificado.", "danger")
-        return redirect(url_for('exibir_produtos'))
+        return redirect(url_for('index'))
 
     produto = int(produto)
-    favoritos = Produto.select_favoritos(user_id)
+    favoritos = Produto.select_favoritos(usuario_id)
 
     if any(produto == fav[0] for fav in favoritos):
-        Produto.excluir_favoritos(produto, user_id)
-        favorito = Produto.select_favoritos(user_id)
+        Produto.excluir_favoritos(produto, usuario_id)
+        favorito = Produto.select_favoritos(usuario_id)
         flash("Produto removido dos favoritos.", "success")
         sucesso = False
         return render_template('favoritos.html',sucesso=sucesso,favoritos=favorito)
     else:
         sucesso = True
-        Produto.add_favoritos(produto, user_id)
-        favorito = Produto.select_favoritos(user_id)
+        Produto.add_favoritos(produto, usuario_id)
+        favorito = Produto.select_favoritos(usuario_id)
         flash("Produto adicionado aos favoritos!", "success")
         return render_template('favoritos.html',sucesso=sucesso,favoritos=favorito)
 
@@ -90,8 +90,8 @@ def register():
         senha = request.form['senha']
         confirmar_senha = request.form['confirmar_senha']
 
-        existing_user = User.get_by_email(email)
-        if existing_user:
+        usuario = User.get_by_email(email)
+        if usuario:
             flash("E-mail já está em uso!", "error")
             return render_template('register.html')
 
@@ -115,17 +115,17 @@ def login():
         email = request.form.get('email')
         senha = request.form.get('senha')
 
-        user = User.get_by_email(email)
+        usuario = User.get_by_email(email)
 
-        if not user:
+        if not usuario:
             flash("E-mail não cadastrado!", "error")
             return render_template('login.html')
 
-        if not check_password_hash(user.senha, senha):
+        if not check_password_hash(usuario.senha, senha):
             flash("Senha incorreta!", "error")
             return render_template('login.html')
 
-        login_user(user, remember=True)
+        login_user(usuario, remember=True)
 
         flash("Login realizado com sucesso!", "success")
         return redirect(url_for('index'))

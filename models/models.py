@@ -150,7 +150,7 @@ class Produto():
     def select_favoritos(user_id):
         conexao = obter_conexao()
         cursor = conexao.cursor()
-        query = "SELECT pro_id, pro_nome, pro_tipo, pro_preco, pro_imagem, pro_descricao FROM tb_produtos JOIN tb_usr_produtos on usp_pro_id = pro_id WHERE usp_usr_id = %s AND usp_favoritos = TRUE;"
+        query = "SELECT pro_id, pro_nome, pro_tipo, pro_descricao, pro_preco, pro_imagem FROM tb_produtos JOIN tb_usr_produtos on usp_pro_id = pro_id WHERE usp_usr_id = %s AND usp_favoritos = TRUE;"
         cursor.execute(query, (user_id,))
         favoritos = cursor.fetchall()
         

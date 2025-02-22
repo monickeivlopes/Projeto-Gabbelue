@@ -41,10 +41,10 @@
         <ul>
             {% for fav in favoritos %}
             <li class="produto-item">
-                <img src="{{ fav[6] }}" alt="Imagem do Produto">
+                <img src="{{ fav[5] }}" alt="Imagem do Produto">
                 <div class="produto-info">
                     <p class="produto-nome">{{ fav[1] }}</p>
-                    <p class="preco">R$ {{ fav[5] }}</p>
+                    <p class="preco">R$ {{ fav[4] }}</p>
                 </div>
                 <form action="{{ url_for('excluir_favoritos', id=fav[0]) }}" method="post">
                     <button class="excluir">🗑️</button>
