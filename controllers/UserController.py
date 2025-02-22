@@ -73,8 +73,6 @@ def add_favoritos():
         flash("Produto adicionado aos favoritos!", "success")
         return render_template('favoritos.html',sucesso=sucesso,favoritos=favorito)
 
-    
-
 
 @app.route("/excluir_favoritos/<int:id>", methods=['POST'])
 @login_required
@@ -145,7 +143,6 @@ def logout():
 
 
 @app.route("/index")
-
 def index():
     return render_template('index.html')
 
@@ -185,10 +182,12 @@ def aneis():
 def info():
     return render_template('infos.html')
 
+
 @app.route("/sobre")
 @login_required
 def sobre():
     return render_template('sobrenos.html')   
+
 
 @app.route("/produtos/<int:id>")
 @login_required
