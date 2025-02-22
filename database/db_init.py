@@ -27,7 +27,7 @@ cursor.execute("""
         usp_usr_id INT NOT NULL,
         usp_pro_id INT NOT NULL,
         usp_carrinho BOOLEAN NULL,
-        usp_favoritos BOOLEAN NULL
+        usp_favorito BOOLEAN NULL
     )
 """)
 
@@ -44,7 +44,7 @@ cursor.execute("""
 """)
 
 cursor.execute("""
-    CREATE TABLE IF NOT EXISTS tb_compra (
+    CREATE TABLE IF NOT EXISTS tb_compras (
         com_id INT AUTO_INCREMENT PRIMARY KEY,
         com_usr_id INT NOT NULL,
         com_valor FLOAT,
@@ -53,7 +53,7 @@ cursor.execute("""
 """)
 
 cursor.execute("""
-    CREATE TABLE IF NOT EXISTS tb_compra_produto(
+    CREATE TABLE IF NOT EXISTS tb_com_produtos (
         cop_id INT AUTO_INCREMENT PRIMARY KEY,
         cop_com_id INT NOT NULL,
         cop_pro_id INT NOT NULL
@@ -61,7 +61,7 @@ cursor.execute("""
 """)
 
 cursor.execute("""
-        INSERT INTO tb_produtos (pro_name, pro_tipo, pro_preco, pro_image,pro_descricao) 
+        INSERT INTO tb_produtos (pro_name, pro_tipo, pro_preco, pro_image, pro_descricao) 
     VALUES ('Conjunto Anna', 'Conjunto',82.00,'../static/images/conjuntoanna.jpg',' Um conjunto elegante e sofisticado, perfeito para ocasiões especiais. Com detalhes delicados e um design moderno, ele adiciona um toque de brilho ao seu visual.Nossos acessórios são confeccionados com materiais de alta qualidade, combinando a durabilidade da prata 925 e a sofisticação do banho a ouro, com detalhes em zircônia e pedras naturais que garantem brilho e elegância para qualquer ocasião.'),
                ('Conjunto Lara', 'Conjunto',115.90, '../static/images/conjuntolara.jpg','Um conjunto refinado que combina sofisticação e estilo. Ideal para quem busca um acessório marcante e elegante.Nossos acessórios são confeccionados com materiais de alta qualidade, combinando a durabilidade da prata 925 e a sofisticação do banho a ouro, com detalhes em zircônia e pedras naturais que garantem brilho e elegância para qualquer ocasião.'),
                ('Conjunto Liz', 'Conjunto',72.90, '../static/images/conjuntotrevo.jpg','Inspirado na beleza natural, este conjunto traz um charme delicado e romântico, perfeito para looks casuais e sofisticados.Nossos acessórios são confeccionados com materiais de alta qualidade, combinando a durabilidade da prata 925 e a sofisticação do banho a ouro, com detalhes em zircônia e pedras naturais que garantem brilho e elegância para qualquer ocasião.'),

@@ -59,13 +59,11 @@ class User(UserMixin):
         return False
 
 class Produto():
-    def __init__(self, id, name, tipo, preco, favoritos, carrinho, image, user_id):
+    def __init__(self, id, name, tipo, preco, image, user_id):
         self.id = id
         self.name = name
         self.tipo = tipo
         self.preco = preco
-        self.favoritos = favoritos
-        self.carrinho = carrinho
         self.image = image
         self.user_id = user_id
     
@@ -78,6 +76,7 @@ class Produto():
         cursor.close()
         conexao.close()
         return result
+        
     @staticmethod
     def get_id(id):
         conexao = obter_conexao()
@@ -92,7 +91,7 @@ class Produto():
     def select_carrinho(user_id):
         conexao = obter_conexao()
         cursor = conexao.cursor()
-        query = "SELECT * FROM tb_produtos WHERE pro_usr_id = %s AND pro_carrinho = True"
+        query = "SELECT * FROM tb_users JOIN tb_usr_produtos on usp_usr_id = usr_id WHERE usr_id = %s AND usp_carrinho = TRUE;"
         cursor.execute(query, (user_id,))
         carrinho = cursor.fetchall()
         
@@ -105,20 +104,20 @@ class Produto():
         conexao = obter_conexao()
         cursor = conexao.cursor()
         cursor.execute(
-            "UPDATE tb_produtos SET pro_carrinho = TRUE, pro_usr_id = %s WHERE pro_id = %s;",
-            (user_id,pro_id)
+            "UPDATE tb_usr_produtos SET usp_carrinho = TRUE WHERE usp_pro_id = %s and usp_usr_id = %s;",
+            (pro_id, user_id)
         )
         conexao.commit()
         cursor.close()
         conexao.close()
     
     @staticmethod
-    def excluir_carrinho(pro_id):
+    def excluir_carrinho(pro_id, user_id):
         conexao = obter_conexao()
         cursor = conexao.cursor()
         cursor.execute(
-            "UPDATE tb_produtos SET pro_carrinho = False, pro_usr_id = NULL WHERE pro_id =%s ;",
-            (pro_id,)
+            "UPDATE tb_usr_produtos SET usp_carrinho = FALSE WHERE usp_pro_id = %s and usp_usr_id = %s;",
+            (pro_id, user_id)
         )
         conexao.commit()
         cursor.close()
@@ -128,7 +127,7 @@ class Produto():
     def select_favoritos(user_id):
         conexao = obter_conexao()
         cursor = conexao.cursor()
-        query = "SELECT * FROM tb_produtos WHERE pro_usr_id = %s AND pro_favoritos = True"
+        query = "SELECT * FROM tb_users JOIN tb_usr_produtos on usp_usr_id = usr_id WHERE usr_id = %s AND usp_favorito = TRUE;"
         cursor.execute(query, (user_id,))
         favoritos = cursor.fetchall()
         
@@ -141,20 +140,20 @@ class Produto():
         conexao = obter_conexao()
         cursor = conexao.cursor()
         cursor.execute(
-            "UPDATE tb_produtos SET pro_favoritos = TRUE, pro_usr_id = %s WHERE pro_id = %s;",
-            (user_id,pro_id)
+            "UPDATE tb_usr_produtos SET usp_favorito = TRUE WHERE usp_pro_id = %s and usp_usr_id = %s;",
+            (pro_id, user_id)
         )
         conexao.commit()
         cursor.close()
         conexao.close()
     
     @staticmethod
-    def excluir_favoritos(pro_id):
+    def excluir_favoritos(pro_id, user_id):
         conexao = obter_conexao()
         cursor = conexao.cursor()
         cursor.execute(
-            "update tb_produtos set pro_favoritos=False, pro_usr_id=NULL where pro_id=%s;",
-            (pro_id,)
+            "UPDATE tb_usr_produtos SET usp_favorito = FALSE WHERE usp_pro_id = %s and usp_usr_id = %s;",
+            (pro_id, user_id)
         )
         conexao.commit()
         cursor.close()
