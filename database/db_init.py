@@ -26,8 +26,8 @@ cursor.execute("""
         usp_id INT AUTO_INCREMENT PRIMARY KEY,
         usp_usr_id INT NOT NULL,
         usp_pro_id INT NOT NULL,
-        usp_carrinho BOOLEAN NULL,
-        usp_favorito BOOLEAN NULL
+        usp_carrinho BOOLEAN  NOT NULL DEFAULT FALSE,
+        usp_favorito BOOLEAN NOT NULL DEFAULT FALSE
     )
 """)
 

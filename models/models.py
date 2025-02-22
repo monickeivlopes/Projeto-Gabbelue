@@ -127,7 +127,7 @@ class Produto():
     def select_favoritos(user_id):
         conexao = obter_conexao()
         cursor = conexao.cursor()
-        query = "SELECT * FROM tb_users JOIN tb_usr_produtos on usp_usr_id = usr_id WHERE usr_id = %s AND usp_favorito = TRUE;"
+        query = "SELECT * FROM tb_users JOIN tb_usr_produtos on usp_usr_id = usr_id WHERE usr_id = %s AND usp_favoritos = TRUE;"
         cursor.execute(query, (user_id,))
         favoritos = cursor.fetchall()
         
@@ -140,7 +140,7 @@ class Produto():
         conexao = obter_conexao()
         cursor = conexao.cursor()
         cursor.execute(
-            "UPDATE tb_usr_produtos SET usp_favorito = TRUE WHERE usp_pro_id = %s and usp_usr_id = %s;",
+            "UPDATE tb_usr_produtos SET usp_favoritos = TRUE WHERE usp_pro_id = %s and usp_usr_id = %s;",
             (pro_id, user_id)
         )
         conexao.commit()
@@ -152,7 +152,7 @@ class Produto():
         conexao = obter_conexao()
         cursor = conexao.cursor()
         cursor.execute(
-            "UPDATE tb_usr_produtos SET usp_favorito = FALSE WHERE usp_pro_id = %s and usp_usr_id = %s;",
+            "UPDATE tb_usr_produtos SET usp_favoritos = FALSE WHERE usp_pro_id = %s and usp_usr_id = %s;",
             (pro_id, user_id)
         )
         conexao.commit()
