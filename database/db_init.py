@@ -22,12 +22,20 @@ cursor.execute("""
 """)
 
 cursor.execute("""
+    CREATE TABLE IF NOT EXISTS tb_usr_produtos (
+        usp_id INT AUTO_INCREMENT PRIMARY KEY,
+        usp_usr_id INT NOT NULL,
+        usp_pro_id INT NOT NULL,
+        usp_carrinho BOOLEAN NULL,
+        usp_favoritos BOOLEAN NULL
+               )
+""")
+
+cursor.execute("""
     CREATE TABLE IF NOT EXISTS tb_produtos (
         pro_id INT AUTO_INCREMENT PRIMARY KEY,
         pro_name VARCHAR(100) NOT NULL,
         pro_tipo VARCHAR(50) NOT NULL,
-        pro_carrinho BOOLEAN NULL,
-        pro_favoritos BOOLEAN NULL,
         pro_preco FLOAT NOT NULL,
         pro_image VARCHAR(255) NULL,
         pro_descricao VARCHAR(255) NULL,
@@ -37,6 +45,25 @@ cursor.execute("""
         
     )
 """)
+
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS tb_compra (
+        com_id INT AUTO_INCREMENT PRIMARY KEY,
+        com_usr_id INT NOT NULL,
+        com_valor FLOAT,
+        com_data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+               )
+""")
+
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS tb_compra_produto(
+        cop_id INT AUTO_INCREMENT PRIMARY_KEY,
+        cop_com_id INT NOT NULL,
+        cop_pro_id INT NOT NULL
+    )
+        
+""")
+
 cursor.execute("""
         INSERT INTO tb_produtos (pro_name, pro_tipo, pro_carrinho, pro_favoritos, pro_preco, pro_image,pro_descricao) 
     VALUES ('Conjunto Anna', 'Conjunto', FALSE, FALSE,82.00,'../static/images/conjuntoanna.jpg',' Um conjunto elegante e sofisticado, perfeito para ocasiões especiais. Com detalhes delicados e um design moderno, ele adiciona um toque de brilho ao seu visual.Nossos acessórios são confeccionados com materiais de alta qualidade, combinando a durabilidade da prata 925 e a sofisticação do banho a ouro, com detalhes em zircônia e pedras naturais que garantem brilho e elegância para qualquer ocasião.'),
