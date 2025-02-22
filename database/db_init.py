@@ -28,7 +28,7 @@ cursor.execute("""
         usp_pro_id INT NOT NULL,
         usp_carrinho BOOLEAN NULL,
         usp_favoritos BOOLEAN NULL
-               )
+    )
 """)
 
 cursor.execute("""
@@ -40,9 +40,6 @@ cursor.execute("""
         pro_image VARCHAR(255) NULL,
         pro_descricao VARCHAR(255) NULL,
         pro_usr_id INT NULL
-               
-        
-        
     )
 """)
 
@@ -52,7 +49,7 @@ cursor.execute("""
         com_usr_id INT NOT NULL,
         com_valor FLOAT,
         com_data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-               )
+    )
 """)
 
 cursor.execute("""
@@ -60,8 +57,7 @@ cursor.execute("""
         cop_id INT AUTO_INCREMENT PRIMARY KEY,
         cop_com_id INT NOT NULL,
         cop_pro_id INT NOT NULL
-    )
-        
+    )   
 """)
 
 cursor.execute("""
