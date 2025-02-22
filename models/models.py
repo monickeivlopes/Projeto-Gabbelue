@@ -1,5 +1,5 @@
 from flask_login import UserMixin
-from database.db_config import obter_conexao
+from ..database import obter_conexao
 
 
 class User(UserMixin):

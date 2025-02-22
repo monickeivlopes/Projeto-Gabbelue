@@ -20,17 +20,6 @@
     <section class="register-container">
         <div class="login-box">
             <h2>Registro</h2>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                            {% if messages %}
-                                <div class="alert alert-dismissible fade show">
-                                    {% for category, message in messages %}
-                                        <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">
-                                            {{ message }}
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        {% endwith %}
             <form action="#" method="POST">
                 <label for="name" class="form-label">Nome Completo</label>
                 <input type="text" name="name" id="name" class="form-control" required>
