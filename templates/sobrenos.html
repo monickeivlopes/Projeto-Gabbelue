@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós | Gabbelue</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" href="../static/images/favicon.ico">
+</head>
+<body>
+    <div class="top-bar">PAGUE EM ATÉ 3X SEM JUROS | PARCELAS A PARTIR DE R$50</div>
+
+    <div class="cabecalho">
+        <div class="logo">
+            <img src="../static/images/logo.png" alt="Logo Gabbelue">
+        </div>
+    </div>    
+
+    <nav class="nav-bar">
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">HOME</a>
+            <a href="{{ url_for('conjuntos') }}">CONJUNTOS</a>
+            <a href="{{ url_for('brincos') }}">BRINCOS</a>
+            <a href="{{ url_for('colares') }}">COLARES</a>
+            <a href="{{ url_for('pulseiras') }}">PULSEIRAS</a>
+            <a href="{{ url_for('aneis') }}">ANÉIS</a>
+            <a href="{{ url_for('sobre') }}" class="active">SOBRE NÓS</a>
+        </div>
+        <div class="icons">
+            <a href="/favoritos"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
+            <a href="/favoritos"><button id="icon-head"><img src="../static/images/image.png" alt=""></button></a> 
+            <a href="/carrinho"><button id="icon-head"><img src="../static/images/carrinho.png" alt=""></button></a>
+            <i><form action="{{url_for('logout')}}">
+                <button id="sair">Sair</button>
+            </form></i> 
+        </div>
+    </nav>
+
+    <div class="promo-bar">Acompanhe as melhores tendências!</div>
+
+    <div class="informative-section">
+        <div class="informative-image">
+            <img src="../static/images/sobre-nos.png" alt="Sobre Nós">
+        </div>
+        <div class="informative-text">
+            <h2>Sobre a Gabbelue</h2>
+            <p>A Gabbelue é uma marca dedicada a trazer aos seus clientes acessórios exclusivos e de qualidade, criando experiências únicas e encantadoras através de peças sofisticadas que traduzem a personalidade de quem as usa.</p>
+            <p>Nosso compromisso vai além da estética; trabalhamos com materiais de alta qualidade e garantimos a satisfação total em cada compra. Estamos aqui para transformar o seu estilo e autoestima.</p>
+            <p> Com o auxílio dos integrantes: André Medeiros, Eunice Cristina, Gabriely Andrade e Monicke Lopes, utilizamos através dos nossos conhecimentos na disciplina de Programação para Internet para aprimorar a visibilidade da marca.</p>
+        </div>
+    </div>
+
+    <footer class="rodape">
+        <div class="rodape-container">
+            <div class="rodape-coluna">
+                <h3>Institucional</h3>
+                <ul>
+                    <li><a href="sobrenos.html">Sobre Nós</a></li>
+                </ul>
+            </div>
+            <div class="rodape-coluna">
+                <h3>Contato</h3>
+                <p><i>&#9742;</i> (84) 99664-1215</p>
+                <p><i>&#9993;</i> contato@gabbelue.com</p>
+            </div>
+            <div class="rodape-coluna">
+                <h3>Siga-nos</h3>
+                <div class="redes-sociais">
+                    <a href="https://www.instagram.com/gabbelue"><i>&#128247;</i> Instagram</a>
+                    <a href="https://www.contate.me/ios/gabbelue"><i>&#128222;</i> WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="rodape-copy">
+            &copy; 2025 Gabbelue - Todos os direitos reservados.
+        </div>
+    </footer>
+</body>
+</html>

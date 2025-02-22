@@ -36,12 +36,27 @@
             <form action="#" method="POST">
                 <label for="email">E-mail</label>
                 <input type="email" id="email" name="email" required>
-                
                 <label for="senha">Senha</label>
-                <input type="password" id="senha" name="password" required>
+                <div class="view-senha">
+                    
+                <input type="password" id="senha" name="senha" required>
+
+                <img onclick="viewSenha()" src="../static/images/olho.png">
+                </div>
                 
                 <button type="submit">Entrar</button>
             </form>
             <p>Não tem uma conta? <a href="{{url_for('register')}}">Cadastre-se</a></p>
         </div>
     </section>
+<script>
+    function viewSenha(){
+  var tipo = document.getElementById("senha")
+  if (tipo.type == "password") {
+    tipo.type = "text";
+  }else{
+    tipo.type = "password";
+  }
+}
+</script>
+</body>

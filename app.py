@@ -94,7 +94,7 @@ def register():
         email = request.form['email']
         telephone = request.form['telephone']
         name = request.form['name']
-        password = request.form['password']
+        password = request.form['senha']
         confirm_password = request.form['confirm_password']
 
         existing_user = User.get_by_email(email)
@@ -120,7 +120,7 @@ def register():
 def login():
     if request.method == "POST":
         email = request.form.get('email')
-        senha = request.form.get('password')
+        senha = request.form.get('senha')
 
         user = User.get_by_email(email)
 
@@ -188,6 +188,11 @@ def aneis():
 @login_required
 def info():
     return render_template('infos.html')
+
+@app.route("/sobre")
+@login_required
+def sobre():
+    return render_template('sobrenos.html')   
 
 @app.route("/produtos/<int:id>")
 @login_required

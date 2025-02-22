@@ -1,52 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Anéis | GABBELUE</title>
-        <link rel="stylesheet" href="../static/style.css">
-        <link rel="icon" href="../static/images/favicon.ico">
-    </head>
-    
-    <body>
-        <div class="top-bar">BEM-VINDO À SUA LOJA FAVORITA DE ACESSÓRIOS</div>
-    
-        <div class="cabecalho">
-            <div class="logo">
-                <a href="/index"><img src="../static/images/logo.png" alt="Logo Gabbelue"></a>
-            </div>
-        </div>    
-    
-        <nav class="nav-bar">
-            <div class="nav-links">
-                <a href="{{ url_for('index') }}">HOME</a>
-                <a href="{{ url_for('conjuntos') }}">CONJUNTOS</a>
-                <a href="{{ url_for('brincos') }}">BRINCOS</a>
-                <a href="{{ url_for('colares') }}">COLARES</a>
-                <a href="{{ url_for('pulseiras') }}">PULSEIRAS</a>
-                <a href="{{ url_for('aneis') }}">ANÉIS</a>
-            </div>
-            <div class="icons">
-                
-                <a href="/favoritos"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
-                <a href="/favoritos"><button id="icon-head"><img src="../static/images/image.png" alt=""></button></a> 
-                <a href="/carrinho"><button id="icon-head"><img src="../static/images/carrinho.png" alt=""></button></a>
-                
-                <i><form action="{{url_for('logout')}}">
-                    <button id="sair">Sair</button>
-                </form></i> 
-        </nav>
-        <div class="secao-produtos">
-            <h2>{{produto[1]}}</h2>
-        </div>
-        <div class="produto-id">
-            <img src="{{produto[6]}}" alt="">
-            <div class="produto-info">
-                <p>{{produto[7]}}</p> <br>
-                <p>Preço unitário: <strong>{{produto[5]}} R$</strong> </p>
-            </div>
-        </div>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto | Gabbelue</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" href="../static/images/favicon.ico">
+</head>
+<body>
+    <div class="top-bar">PAGUE EM ATÉ 3X SEM JUROS | PARCELAS A PARTIR DE R$50</div>
 
-    
+    <div class="cabecalho">
+        <div class="logo">
+            <img src="../static/images/logo.png" alt="Logo">
+        </div>
+    </div>    
+
+    <nav class="nav-bar">
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">HOME</a>
+            <a href="{{ url_for('conjuntos') }}">CONJUNTOS</a>
+            <a href="{{ url_for('brincos') }}">BRINCOS</a>
+            <a href="{{ url_for('colares') }}">COLARES</a>
+            <a href="{{ url_for('pulseiras') }}">PULSEIRAS</a>
+            <a href="{{ url_for('aneis') }}">ANÉIS</a>
+        </div>
+        <div class="icons">
+            <div class="heart"></div>
+            <a href="/favoritos"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
+            <a href="/favoritos"><button id="icon-head"><img src="../static/images/image.png" alt=""></button></a> 
+            <a href="/carrinho"><button id="icon-head"><img src="../static/images/carrinho.png" alt=""></button></a>
+            <i><form action="{{url_for('logout')}}">
+                <button id="sair">Sair</button>
+            </form></i> 
+        </div>
+    </nav>
+
+    <div class="produto-detalhes">
+        <div class="produto-imagem">
+            <img src="../static/images/anel1.jpg" alt="Anel Delicado">
+        </div>
+        <div class="produto-info">
+            <h1>Anel Delicado</h1>
+            <p class="descricao">Anel delicado feito com materiais de alta qualidade, perfeito para ocasiões especiais ou para o uso diário. Seu design elegante combina com diferentes estilos de looks.</p>
+            <strong>R$ 35,00</strong>
+            
+            <form action="{{url_for('add_carrinho')}}" method="post">
+                <input type="number" name="id" value="23" style="display: none;">
+                <button id="button">ADICIONAR AO CARRINHO</button>
+            </form>
+            <form action="{{url_for('add_favoritos')}}" method="post">
+                <input type="number" name="id" value="23" style="display: none;">
+                <button id="icon-button"><img id="icon" src="../static/images/disabledFavorite.png" alt="Adicionar aos Favoritos"></button>
+            </form>
+        </div>
+    </div>
+
+    <section class="secao-produtos-relacionados">
+        <h2>Produtos Relacionados</h2>
+        <div class="produtos-container">
+            <div class="produtos">
+                <img src="../static/images/colarvivian.jpg" alt="Colar Vivian">
+                <p>Colar Vivian</p>
+                <strong>R$ 92,00</strong>
+                <form action="{{url_for('add_carrinho')}}" method="post">
+                    <input type="number" name="id" value="13" style="display: none;">
+                    <button id="button">ADICIONAR AO CARRINHO</button>
+                </form>
+            </div>
+            <div class="produtos">
+                <img src="../static/images/conjuntolara.jpg" alt="Conjunto Lara">
+                <p>Conjunto Lara</p>
+                <strong>R$ 115,90</strong>
+                <form action="{{url_for('add_carrinho')}}" method="post">
+                    <input type="number" name="id" value="2" style="display: none;">
+                    <button id="button">ADICIONAR AO CARRINHO</button>
+                </form>
+            </div>
+            <div class="produtos">
+                <img src="../static/images/argola1.jpg" alt="Argola Concha">
+                <p>Argola Concha</p>
+                <strong>R$ 39,90</strong>
+                <form action="{{url_for('add_carrinho')}}" method="post">
+                    <input type="number" name="id" value="7" style="display: none;">
+                    <button id="button">ADICIONAR AO CARRINHO</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="rodape">
+        <div class="rodape-container">
+            <div class="rodape-coluna">
+                <h3>Institucional</h3>
+                <ul>
+                    <li><a href="sobrenos.html">Sobre Nós</a></li>
+                </ul>
+            </div>
+            <div class="rodape-coluna">
+                <h3>Contato</h3>
+                <p><i>&#9742;</i> (84) 99664-1215</p>
+                <p><i>&#9993;</i> contato@gabbelue.com</p>
+            </div>
+            <div class="rodape-coluna">
+                <h3>Siga-nos</h3>
+                <div class="redes-sociais">
+                    <a href="https://www.instagram.com/gabbelue"><i>&#128247;</i> Instagram</a>
+                    <a href="https://www.contate.me/ios/gabbelue"><i>&#128222;</i> WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="rodape-copy">
+            &copy; 2025 Gabbelue - Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+
+        function moveSlide(direction) {
+            const slides = document.querySelector('.slides');
+            const totalSlides = document.querySelectorAll('.slide').length;
+            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        setInterval(() => moveSlide(1), 3000);
+    </script>
 </body>
 </html>
