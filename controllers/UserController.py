@@ -29,12 +29,11 @@ def favoritos():
     return render_template('favoritos.html',favoritos=favoritos)
 
 
-@app.route("/excluir_carrinho/<int:id>", methods=['GET', 'POST'])
+@app.route("/excluir_carrinho/<int:id>", methods=['POST'])
 @login_required
 def excluir_carrinho(id):
-    if request.method=='POST':
-        Produto.excluir_carrinho(id)
-    
+    Produto.excluir_carrinho(id, current_user.id)
+    flash("Produto removido do carrinho.", "success")
     return redirect(url_for('carrinho'))
 
 
@@ -42,7 +41,7 @@ def excluir_carrinho(id):
 def add_carrinho():   
     user_id = current_user.id
     produto = request.form['id']
-    Produto.add_carrinho(produto,user_id)
+    Produto.add_carrinho(produto, user_id)
     carrinho = Produto.select_carrinho(user_id)
     return render_template('carrinho.html',carrinho=carrinho)
 
@@ -61,7 +60,7 @@ def add_favoritos():
     favoritos = Produto.select_favoritos(user_id)
 
     if any(produto == fav[0] for fav in favoritos):
-        Produto.excluir_favoritos(produto)
+        Produto.excluir_favoritos(produto, user_id)
         favorito = Produto.select_favoritos(user_id)
         flash("Produto removido dos favoritos.", "success")
         sucesso = False
@@ -77,7 +76,7 @@ def add_favoritos():
 @app.route("/excluir_favoritos/<int:id>", methods=['POST'])
 @login_required
 def excluir_favoritos(id):
-    Produto.excluir_favoritos(id)
+    Produto.excluir_favoritos(id, current_user.id)
     flash("Produto removido dos favoritos.", "success")
     return redirect(url_for('favoritos'))
 
@@ -86,23 +85,23 @@ def excluir_favoritos(id):
 def register():
     if request.method == "POST":
         email = request.form['email']
-        telephone = request.form['telephone']
-        name = request.form['name']
-        password = request.form['senha']
-        confirm_password = request.form['confirm_password']
+        telefone = request.form['telefone']
+        nome = request.form['nome']
+        senha = request.form['senha']
+        confirmar_senha = request.form['confirmar_senha']
 
         existing_user = User.get_by_email(email)
         if existing_user:
             flash("E-mail já está em uso!", "error")
             return render_template('register.html')
 
-        if password != confirm_password:
+        if senha != confirmar_senha:
             flash("As senhas não coincidem!", "error")
             return render_template('register.html')
 
-        hashed_password = generate_password_hash(password)
+        hashed_senha = generate_password_hash(senha)
 
-        User.create(name=name, email=email, telephone=telephone, password=hashed_password)
+        User.create(nome=nome, email=email, telefone=telefone, senha=hashed_senha)
 
         flash("Cadastro realizado com sucesso! Faça login.", "success")
         return redirect(url_for('login'))
@@ -122,7 +121,7 @@ def login():
             flash("E-mail não cadastrado!", "error")
             return render_template('login.html')
 
-        if not check_password_hash(user.password, senha):
+        if not check_password_hash(user.senha, senha):
             flash("Senha incorreta!", "error")
             return render_template('login.html')
 
@@ -193,7 +192,7 @@ def sobre():
 @login_required
 def produtos(id):
     produtos = Produto.get_id(id)
-    return render_template('produtos.html',produto=produtos)
+    return render_template('produtos.html', produto=produtos)
 
 
 if __name__ == "__main__":
