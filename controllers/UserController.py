@@ -1,7 +1,7 @@
 from flask import request, render_template, redirect, url_for, flash
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from ..models.models import User, Produto
+from ..models.models import User, Produto, Compra
 from .. import app, login_manager
 
 
@@ -16,8 +16,9 @@ def load_user(usuario_id):
 def carrinho():
     usuario_id = current_user.id
     carrinho = Produto.select_carrinho(usuario_id)
-
-    return render_template('carrinho.html',carrinho=carrinho)
+    valor = Compra.valor_compra(usuario_id)
+    total = float(valor[0][0])
+    return render_template('carrinho.html',carrinho=carrinho, valor=total)
 
 
 @app.route("/favoritos", methods=['GET', 'POST'])
@@ -186,6 +187,15 @@ def info():
 @login_required
 def sobre():
     return render_template('sobrenos.html')   
+
+@app.route("/compra")
+@login_required
+def compra():
+    user = current_user.user
+    valor = Compra.valor_compra(user)
+    Compra.create(user,valor)
+    return render_template('carrinho.html')   
+
 
 
 @app.route("/produtos/<int:id>")

@@ -196,3 +196,57 @@ class Produto():
         conexao.commit()
         cursor.close()
         conexao.close()
+
+class Compra():
+    def __init__(self, id, user_id, valor, data):
+        self.id = id
+        self.user_id = user_id
+        self.valor = valor
+        self.data = data
+        
+    @staticmethod
+    def get(user_id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("SELECT * FROM tb_compras WHERE com_user_id=%s ",(user_id,))
+        result = cursor.fetchall()
+
+        cursor.close()
+        conexao.close()
+        if result:
+            return Compra(*result) 
+        return None
+        
+    @staticmethod
+    def get_id(id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("SELECT * FROM tb_compras")
+        result = cursor.fetchall()
+
+        cursor.close()
+        conexao.close()
+        return result
+    
+    def valor_compra(user_id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("select sum(pro_preco) from tb_produtos join tb_usr_produtos on usp_pro_id=pro_id where usp_usr_id=%s and usp_carrinho=1 group by usp_usr_id",(user_id,))
+        result = cursor.fetchall()
+
+        cursor.close()
+        conexao.close()
+        return result
+    
+    @staticmethod
+    def create(user_id, valor, data):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute(
+            "INSERT INTO tb_users (com_usr_id, com_valor, com_data) VALUES (%s, %s, %s)",
+            (user_id, valor, data)
+        )
+
+        conexao.commit()
+        cursor.close()
+        conexao.close()

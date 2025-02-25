@@ -57,7 +57,10 @@
             {% endfor %}
         </ul>
     </div>
-    <form action="" method="post"></form>
+    <h2>Valor total do seu carrinho : {{valor}}</h2>
+    <form action="{{url_for('compra')}}" method="post">
+        <button id="icon-button">Finalizar compra</button>
+    </form>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             document.querySelectorAll(".incremento").forEach(button => {
