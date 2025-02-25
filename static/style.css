@@ -24,13 +24,14 @@ body{
 }
 
 .informative-image img {
-    width: 200px; /* Aumento da largura */
+    width: 300px; /* Aumento da largura */
     height: auto;
 }
 
 .informative-text {
     flex: 1;
     text-align: left;
+    flex-direction: column;
 }
 
 .informative-text h2 {
@@ -142,7 +143,7 @@ body{
     height: 100%; 
     object-fit: cover; 
     display: block;
-    opacity: 0.5;
+    opacity: 0.7;
     
 }
 
@@ -226,8 +227,27 @@ body{
     border: 0;
    background-color: white;
 }
+.informative-text #icon-button{
+    width: 30px;
+    height:30px;
+    margin-left: 90%;
+    border: 0;
+   background-color: #f8f8f8;;
+}
 
 .produtos #button{
+    
+    background-color: rgb(162, 0, 67);
+    border: none;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.informative-section  #button{
     
     background-color: rgb(162, 0, 67);
     border: none;
@@ -257,6 +277,11 @@ body{
     width: 200px; 
     height: auto; 
 }
+.logo-login img {
+    width: 100px; 
+    height: auto; 
+}
+
 
 .rodape {
     padding: 40px 0;

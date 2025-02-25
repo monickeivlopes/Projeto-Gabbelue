@@ -27,7 +27,7 @@
         </div>
         <div class="icons">
             <div class="heart"></div>
-            <a href="/favoritos"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
+            <a href="/sobre"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
             <a href="/favoritos"><button id="icon-head"><img src="../static/images/image.png" alt=""></button></a> 
             <a href="/carrinho"><button id="icon-head"><img src="../static/images/carrinho.png" alt=""></button></a>
             <i><form action="{{url_for('logout')}}">
@@ -35,16 +35,14 @@
             </form></i> 
         </div>
     </nav>
-
-    <div class="produto-detalhes">
-        <div class="produto-imagem">
-            <img src="../static/images/anel1.jpg" alt="Anel Delicado">
+    <div class="informative-section">
+        <div class="informative-image">
+            <img src="../static/images/anel1.jpg" alt="Sobre Nós">
         </div>
-        <div class="produto-info">
+        <div class="informative-text">
             <h1>Anel Delicado</h1>
             <p class="descricao">Anel delicado feito com materiais de alta qualidade, perfeito para ocasiões especiais ou para o uso diário. Seu design elegante combina com diferentes estilos de looks.</p>
             <strong>R$ 35,00</strong>
-            
             <form action="{{url_for('add_carrinho')}}" method="post">
                 <input type="number" name="id" value="23" style="display: none;">
                 <button id="button">ADICIONAR AO CARRINHO</button>
@@ -54,7 +52,10 @@
                 <button id="icon-button"><img id="icon" src="../static/images/disabledFavorite.png" alt="Adicionar aos Favoritos"></button>
             </form>
         </div>
+        
     </div>
+
+
 
     <section class="secao-produtos-relacionados">
         <h2>Produtos Relacionados</h2>
