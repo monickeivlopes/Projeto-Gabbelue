@@ -18,6 +18,9 @@ def carrinho():
     carrinho = Produto.select_carrinho(usuario_id)
     valor = Compra.valor_compra(usuario_id)
     total = float(valor[0][0])
+    Compra.create(usuario_id,valor)
+    com
+    Compra.create_com_pro()
     return render_template('carrinho.html',carrinho=carrinho, valor=total)
 
 
