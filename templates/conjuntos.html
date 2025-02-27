@@ -27,10 +27,11 @@
             <a href="{{ url_for('colares') }}">COLARES</a>
             <a href="{{ url_for('pulseiras') }}">PULSEIRAS</a>
             <a href="{{ url_for('aneis') }}">ANÉIS</a>
+            <a href="{{ url_for('sobre') }}" class="active">SOBRE NÓS</a>
         </div>
         <div class="icons">
             
-            <a href="/fsobre"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
+            <a href="/perfil"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
             <a href="/favoritos"><button id="icon-head"><img src="../static/images/image.png" alt=""></button></a> 
             <a href="/carrinho"><button id="icon-head"><img src="../static/images/carrinho.png" alt=""></button></a>
             
@@ -130,7 +131,7 @@
                     <div class="rodape-coluna">
                         <h3>Institucional</h3>
                         <ul>
-                            <li><a href="sobrenos.html">Sobre Nós</a></li>
+                            <li><a href="{{url_for('sobre')}}">Sobre Nós</a></li>
                         </ul>
                     </div>
                     

@@ -24,6 +24,7 @@
             <a href="{{ url_for('colares') }}">COLARES</a>
             <a href="{{ url_for('pulseiras') }}">PULSEIRAS</a>
             <a href="{{ url_for('aneis') }}">ANÉIS</a>
+            <a href="{{ url_for('sobre') }}" class="active">SOBRE NÓS</a>
         </div>
         <div class="icons">
             
@@ -35,19 +36,32 @@
                 <button id="sair">Sair</button>
             </form></i>  
     </nav>
+    <div class="informative-compra">
+    <h2>Valor total do seu carrinho : {{valor}}</h2> <br>
+    <form action="{{url_for('compra')}}" method="post">
+        <button id="compra-button">Finalizar compra</button>
+    </form>
+    </div>
+    <div class="error">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-{{ category }}"><p>{{ message }}</p></div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
     <h1 class="h1-pags">CARRINHO</h1>
+    
     <div class="carrinho-produto">
+       
         <ul>
             {% for car in carrinho %}
             <li>
                 <img src="{{ car[4] }}" alt="Imagem do produto">
                 <div class="produto-info">
                     <p>{{ car[1] }}</p>
-                    <div class="quantidade">
-                        <button class="decremento" data-id="{{ car[0] }}">-</button>
-                        <input type="text" value="1" id="quantidade-{{ car[0] }}" readonly>
-                        <button class="incremento" data-id="{{ car[0] }}">+</button>
-                    </div>
+                    
                 </div>
                 <p class="preco" id="preco-{{ car[0] }}" data-unit-price="{{ car[3] }}">R${{ car[3] }}</p>
                 <form action="{{ url_for('excluir_carrinho', id=car[0]) }}" method="post">
@@ -57,10 +71,7 @@
             {% endfor %}
         </ul>
     </div>
-    <h2>Valor total do seu carrinho : {{valor}}</h2>
-    <form action="{{url_for('compra')}}" method="post">
-        <button id="icon-button">Finalizar compra</button>
-    </form>
+    
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             document.querySelectorAll(".incremento").forEach(button => {

@@ -24,10 +24,11 @@
             <a href="{{ url_for('colares') }}">COLARES</a>
             <a href="{{ url_for('pulseiras') }}">PULSEIRAS</a>
             <a href="{{ url_for('aneis') }}">ANÉIS</a>
+            <a href="{{ url_for('sobre') }}" class="active">SOBRE NÓS</a>
         </div>
         <div class="icons">
             <div class="heart"></div>
-            <a href="/sobre"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
+            <a href="/perfil"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
             <a href="/favoritos"><button id="icon-head"><img src="../static/images/image.png" alt=""></button></a> 
             <a href="/carrinho"><button id="icon-head"><img src="../static/images/carrinho.png" alt=""></button></a>
             <i><form action="{{url_for('logout')}}">
@@ -37,20 +38,22 @@
     </nav>
     <div class="informative-section">
         <div class="informative-image">
-            <img src="../static/images/anel1.jpg" alt="Sobre Nós">
+            <img src="{{produto[4]}}" alt="Sobre Nós">
         </div>
         <div class="informative-text">
-            <h1>Anel Delicado</h1>
-            <p class="descricao">Anel delicado feito com materiais de alta qualidade, perfeito para ocasiões especiais ou para o uso diário. Seu design elegante combina com diferentes estilos de looks.</p>
-            <strong>R$ 35,00</strong>
-            <form action="{{url_for('add_carrinho')}}" method="post">
-                <input type="number" name="id" value="23" style="display: none;">
+            <h1>{{produto[1]}}</h1>
+            <p class="descricao">{{produto[5]}}</p>
+            <strong>{{produto[3]}}</strong>
+            <div class="secao-produtos-perfil">
+                <form action="{{url_for('add_carrinho')}}" method="post">
+                <input type="number" name="id" value="{{produto[0]}}">
                 <button id="button">ADICIONAR AO CARRINHO</button>
             </form>
             <form action="{{url_for('add_favoritos')}}" method="post">
-                <input type="number" name="id" value="23" style="display: none;">
-                <button id="icon-button"><img id="icon" src="../static/images/disabledFavorite.png" alt="Adicionar aos Favoritos"></button>
+                <input type="number" name="id" value="{{produto[0]}}">
+                <button id="icon-button" style="cursor: pointer"><img id="icon" src="../static/images/disabledFavorite.png" alt=""></button>
             </form>
+            </div>
         </div>
         
     </div>
@@ -95,7 +98,7 @@
             <div class="rodape-coluna">
                 <h3>Institucional</h3>
                 <ul>
-                    <li><a href="sobrenos.html">Sobre Nós</a></li>
+                    <li><a href="{{url_for('sobre')}}">Sobre Nós</a></li>
                 </ul>
             </div>
             <div class="rodape-coluna">

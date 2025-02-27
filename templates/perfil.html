@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós | Gabbelue</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" href="../static/images/favicon.ico">
+</head>
+<body>
+    <div class="top-bar">PAGUE EM ATÉ 3X SEM JUROS | PARCELAS A PARTIR DE R$50</div>
+
+    <div class="cabecalho">
+        <div class="logo">
+            <img src="../static/images/logo.png" alt="Logo Gabbelue">
+        </div>
+    </div>    
+
+    <nav class="nav-bar">
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">HOME</a>
+            <a href="{{ url_for('conjuntos') }}">CONJUNTOS</a>
+            <a href="{{ url_for('brincos') }}">BRINCOS</a>
+            <a href="{{ url_for('colares') }}">COLARES</a>
+            <a href="{{ url_for('pulseiras') }}">PULSEIRAS</a>
+            <a href="{{ url_for('aneis') }}">ANÉIS</a>
+            <a href="{{ url_for('sobre') }}" class="active">SOBRE NÓS</a>
+        </div>
+        <div class="icons">
+            <a href="/perfil"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
+            <a href="/favoritos"><button id="icon-head"><img src="../static/images/image.png" alt=""></button></a> 
+            <a href="/carrinho"><button id="icon-head"><img src="../static/images/carrinho.png" alt=""></button></a>
+            <i><form action="{{url_for('logout')}}">
+                <button id="sair">Sair</button>
+            </form></i> 
+        </div>
+    </nav>
+
+    <div class="promo-bar">Continuem a fazer as melhores compas aqui</div>
+    <h1 class="h1-pags">Suas compras</h1>
+    
+    <div class="carrinho-produto">
+       
+        <ul>
+            {% for com in compra %}
+                <li>
+                    <p>{{ com[0] }}</p>
+                    <div class="div">
+                        <strong><p>Preço</p></strong>
+                        <p >R${{ com[1] }}</p>
+                    </div>
+                    <div class="div">
+                        <strong><p>Data</p></strong>
+                        <p>{{ com[2].day }}/{{ com[2].month }}/{{ com[2].year }}</p>
+                    </div>
+                    <strong><p>Produtos:</p></strong>
+        
+                    {% for pro in produtos %}
+                        {% if pro[0] == com[0] %}  {# Verifica se o produto pertence a essa compra #}
+                           <div>
+                            <img src="{{ pro[3] }}" alt="Imagem do produto">
+                            
+                            <p>{{pro[1]}}</p>
+                           </div>
+                        {% endif %}
+                    {% endfor %}
+        
+                    <div class="produto-info"></div>
+        
+                    
+                </li>
+            {% endfor %}
+        </ul>
+        
+    </div>
+    
+        
+            
+</body>
+</html>

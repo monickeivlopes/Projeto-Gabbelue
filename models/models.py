@@ -208,7 +208,7 @@ class Compra():
     def get(user_id):
         conexao = obter_conexao()
         cursor = conexao.cursor()
-        cursor.execute("SELECT * FROM tb_compras WHERE com_user_id=%s ",(user_id,))
+        cursor.execute("SELECT * FROM tb_compras WHERE com_usr_id=%s ",(user_id,))
         result = cursor.fetchall()
 
         cursor.close()
@@ -216,12 +216,31 @@ class Compra():
         if result:
             return Compra(*result) 
         return None
-        
     @staticmethod
-    def get_id(id):
+    def get_compra(user_id):
         conexao = obter_conexao()
         cursor = conexao.cursor()
-        cursor.execute("SELECT * FROM tb_compras")
+        cursor.execute("SELECT com_id, com_valor, com_data FROM tb_compras WHERE com_usr_id=%s ",(user_id,))
+        result = cursor.fetchall()
+
+        cursor.close()
+        conexao.close()
+        
+        return result
+    @staticmethod
+    def get_produto(user_id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("SELECT com_id, pro_nome, pro_preco, pro_imagem FROM tb_produtos join tb_com_produtos on cop_pro_id=pro_id join tb_compras on cop_com_id=com_id WHERE com_usr_id=%s",(user_id,))
+        result = cursor.fetchall()
+
+        return result
+        
+    @staticmethod
+    def get_id(user_id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("SELECT com_id FROM tb_compras WHERE com_usr_id=%s",(user_id,))
         result = cursor.fetchall()
 
         cursor.close()
@@ -239,13 +258,36 @@ class Compra():
         return result
     
     @staticmethod
-    def create(user_id, valor, data):
+    def create(user_id, valor):
         conexao = obter_conexao()
         cursor = conexao.cursor()
         cursor.execute(
-            "INSERT INTO tb_users (com_usr_id, com_valor, com_data) VALUES (%s, %s, %s)",
-            (user_id, valor, data)
+            "INSERT INTO tb_compras (com_usr_id, com_valor) VALUES (%s, %s)",
+            (user_id, valor)
         )
+
+        conexao.commit()
+        cursor.close()
+        conexao.close()
+
+    @staticmethod
+    def create_com_pro(com_id,pro_id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute(
+            "INSERT INTO tb_com_produtos (cop_com_id,cop_pro_id) VALUES (%s, %s)",
+            (com_id,pro_id)
+        )
+
+        conexao.commit()
+        cursor.close()
+        conexao.close()
+    
+    @staticmethod
+    def exluir(user_id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("UPDATE tb_usr_produtos SET usp_carrinho = FALSE WHERE usp_usr_id = %s",(user_id,))
 
         conexao.commit()
         cursor.close()
