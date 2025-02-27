@@ -1,4 +1,4 @@
-from flask import request, render_template, redirect, url_for, flash
+from flask import request, render_template, redirect, url_for, flash, session
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from ..models.models import User, Produto, Compra
@@ -16,12 +16,41 @@ def load_user(usuario_id):
 def carrinho():
     usuario_id = current_user.id
     carrinho = Produto.select_carrinho(usuario_id)
+    session['carrinho'] = carrinho
     valor = Compra.valor_compra(usuario_id)
-    total = float(valor[0][0])
-    Compra.create(usuario_id,valor)
-    com
-    Compra.create_com_pro()
-    return render_template('carrinho.html',carrinho=carrinho, valor=total)
+    if not valor:
+        total = 0
+    else:
+        total = float(valor[0][0])
+    return render_template('carrinho.html',user_id=usuario_id,valor=total,carrinho=carrinho)
+    
+    
+@app.route("/compra", methods=['POST'])
+@login_required
+def compra():
+    usuario_id = current_user.id
+    carrinho = Produto.select_carrinho(usuario_id)
+    session['carrinho'] = carrinho
+    valor = Compra.valor_compra(usuario_id)
+    if not valor:
+        total = 0
+    else:
+        total = float(valor[0][0])
+    Compra.create(usuario_id,total)
+    return redirect(url_for('compra_carrinho',user_id=usuario_id,valor=total,carrinho=carrinho))
+
+
+@app.route("/compra_carrinho/<int:user_id>/<float:valor>", methods=['GET', 'POST'])
+@login_required
+def compra_carrinho(user_id,valor):
+    com_id = Compra.get_id(user_id)
+    com_id = com_id[-1]
+    carrinho = session.get('carrinho', [])
+    for id in carrinho:
+        Compra.create_com_pro(com_id[0],id[0])
+    Compra.exluir(user_id)
+    flash("Compra finalizada com sucesso.", "success")
+    return redirect(url_for('carrinho'))
 
 
 @app.route("/favoritos", methods=['GET', 'POST'])
@@ -46,8 +75,10 @@ def add_carrinho():
     usuario_id = current_user.id
     produto = request.form['id']
     Produto.add_carrinho(produto, usuario_id)
-    carrinho = Produto.select_carrinho(usuario_id)
-    return render_template('carrinho.html',carrinho=carrinho)
+    
+    return redirect(url_for('carrinho'))
+
+
 
 
 @app.route("/add_favoritos", methods=['POST'])
@@ -149,6 +180,13 @@ def logout():
 def index():
     return render_template('index.html')
 
+@app.route("/perfil")
+def perfil():
+    user_id = current_user.id
+    compra = Compra.get_compra(user_id)
+    produtos = Compra.get_produto(user_id)
+    return render_template('perfil.html',compra=compra,produtos=produtos)
+
 
 @app.route("/conjuntos")
 @login_required
@@ -190,15 +228,6 @@ def info():
 @login_required
 def sobre():
     return render_template('sobrenos.html')   
-
-@app.route("/compra")
-@login_required
-def compra():
-    user = current_user.user
-    valor = Compra.valor_compra(user)
-    Compra.create(user,valor)
-    return render_template('carrinho.html')   
-
 
 
 @app.route("/produtos/<int:id>")
