@@ -63,13 +63,14 @@ class User(UserMixin):
 
 
 class Produto():
-    def __init__(self, id, nome, tipo, preco, image, user_id):
+    def __init__(self, id, nome, tipo, preco, image, user_id, estoque):
         self.id = id
         self.nome = nome
         self.tipo = tipo
         self.preco = preco
         self.image = image
         self.user_id = user_id
+        self.estoque = estoque
     
     @staticmethod
     def get():
@@ -99,7 +100,7 @@ class Produto():
     def select_carrinho(user_id):
         conexao = obter_conexao()
         cursor = conexao.cursor()
-        query = "SELECT pro_id, pro_nome, pro_tipo, pro_preco, pro_imagem, pro_descricao FROM tb_produtos JOIN tb_usr_produtos on usp_pro_id = pro_id WHERE usp_usr_id = %s AND usp_carrinho = TRUE;"
+        query = "SELECT pro_id, pro_nome, pro_tipo, pro_preco, pro_imagem, pro_descricao, pro_estoque FROM tb_produtos JOIN tb_usr_produtos on usp_pro_id = pro_id WHERE usp_usr_id = %s AND usp_carrinho = TRUE;"
         cursor.execute(query, (user_id,))
         carrinho = cursor.fetchall()
 
@@ -150,7 +151,7 @@ class Produto():
     def select_favoritos(user_id):
         conexao = obter_conexao()
         cursor = conexao.cursor()
-        query = "SELECT pro_id, pro_nome, pro_tipo, pro_descricao, pro_preco, pro_imagem FROM tb_produtos JOIN tb_usr_produtos on usp_pro_id = pro_id WHERE usp_usr_id = %s AND usp_favoritos = TRUE;"
+        query = "SELECT pro_id, pro_nome, pro_tipo, pro_descricao, pro_preco, pro_imagem, pro_estoque FROM tb_produtos JOIN tb_usr_produtos on usp_pro_id = pro_id WHERE usp_usr_id = %s AND usp_favoritos = TRUE;"
         cursor.execute(query, (user_id,))
         favoritos = cursor.fetchall()
         
@@ -231,7 +232,7 @@ class Compra():
     def get_produto(user_id):
         conexao = obter_conexao()
         cursor = conexao.cursor()
-        cursor.execute("SELECT com_id, pro_nome, pro_preco, pro_imagem FROM tb_produtos join tb_com_produtos on cop_pro_id=pro_id join tb_compras on cop_com_id=com_id WHERE com_usr_id=%s",(user_id,))
+        cursor.execute("SELECT com_id, pro_nome, pro_preco, pro_imagem, pro_estoque FROM tb_produtos join tb_com_produtos on cop_pro_id=pro_id join tb_compras on cop_com_id=com_id WHERE com_usr_id=%s",(user_id,))
         result = cursor.fetchall()
 
         return result
@@ -284,7 +285,7 @@ class Compra():
         conexao.close()
     
     @staticmethod
-    def exluir(user_id):
+    def excluir(user_id):
         conexao = obter_conexao()
         cursor = conexao.cursor()
         cursor.execute("UPDATE tb_usr_produtos SET usp_carrinho = FALSE WHERE usp_usr_id = %s",(user_id,))

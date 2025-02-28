@@ -28,16 +28,16 @@
         </div>
         <div class="icons">
             
-            <a href="/perfil"><button id="icon-head"><img src="../static/images/pessoal.png" alt=""></button></a> 
-            <a href="/favoritos"><button id="icon-head"><img src="../static/images/image.png" alt=""></button></a> 
-            <a href="/carrinho"><button id="icon-head"><img src="../static/images/carrinho.png" alt=""></button></a>
+            <a href="/perfil"><button id="icon-head" style="cursor: pointer"><img src="../static/images/pessoal.png" alt=""></button></a> 
+            <a href="/favoritos"><button id="icon-head" style="cursor: pointer"><img src="../static/images/image.png" alt=""></button></a> 
+            <a href="/carrinho"><button id="icon-head" style="cursor: pointer"><img src="../static/images/carrinho.png" alt=""></button></a>
             
             <i><form action="{{url_for('logout')}}">
                 <button id="sair">Sair</button>
             </form></i>  
     </nav>
     <div class="informative-compra">
-    <h2>Valor total do seu carrinho : {{valor}}</h2> <br>
+    <h2>Valor total do seu carrinho : R${{ "%.2f"|format(valor) }}</h2> <br>
     <form action="{{url_for('compra')}}" method="post">
         <button id="compra-button">Finalizar compra</button>
     </form>

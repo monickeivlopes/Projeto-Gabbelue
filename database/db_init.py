@@ -8,6 +8,7 @@ conexao = mysql.connector.connect(
 
 cursor = conexao.cursor()
 
+cursor.execute("DROP DATABASE IF EXISTS db_gabbelue")
 cursor.execute("CREATE DATABASE IF NOT EXISTS db_gabbelue")
 cursor.execute("USE db_gabbelue")
 
@@ -28,6 +29,7 @@ cursor.execute("""
         pro_tipo VARCHAR(50) NOT NULL,
         pro_preco DECIMAL(10,2) NOT NULL,
         pro_imagem VARCHAR(255) NULL,
+        pro_estoque INT NOT NULL DEFAULT 20,
         pro_descricao TEXT NULL,
         pro_usr_id INT NULL,
         FOREIGN KEY (pro_usr_id) REFERENCES tb_users(usr_id) ON DELETE SET NULL ON UPDATE CASCADE

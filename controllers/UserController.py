@@ -5,7 +5,6 @@ from ..models.models import User, Produto, Compra
 from .. import app, login_manager
 
 
-
 @login_manager.user_loader
 def load_user(usuario_id):
     return User.get(usuario_id)
@@ -22,7 +21,7 @@ def carrinho():
         total = 0
     else:
         total = float(valor[0][0])
-    return render_template('carrinho.html',user_id=usuario_id,valor=total,carrinho=carrinho)
+    return render_template('carrinho.html', user_id=usuario_id, valor=total, carrinho=carrinho)
     
     
 @app.route("/compra", methods=['POST'])
@@ -30,14 +29,17 @@ def carrinho():
 def compra():
     usuario_id = current_user.id
     carrinho = Produto.select_carrinho(usuario_id)
+
+    if not carrinho: 
+        flash("Seu carrinho está vazio! Adicione itens antes de finalizar a compra.", "warning")
+        return redirect(url_for('carrinho'))
+
     session['carrinho'] = carrinho
     valor = Compra.valor_compra(usuario_id)
-    if not valor:
-        total = 0
-    else:
-        total = float(valor[0][0])
-    Compra.create(usuario_id,total)
-    return redirect(url_for('compra_carrinho',user_id=usuario_id,valor=total,carrinho=carrinho))
+    total = float(valor[0][0]) if valor else 0
+
+    Compra.create(usuario_id, total)
+    return redirect(url_for('compra_carrinho', user_id=usuario_id, valor=total, carrinho=carrinho))
 
 
 @app.route("/compra_carrinho/<int:user_id>/<float:valor>", methods=['GET', 'POST'])
@@ -48,7 +50,7 @@ def compra_carrinho(user_id,valor):
     carrinho = session.get('carrinho', [])
     for id in carrinho:
         Compra.create_com_pro(com_id[0],id[0])
-    Compra.exluir(user_id)
+    Compra.excluir(user_id)
     flash("Compra finalizada com sucesso.", "success")
     return redirect(url_for('carrinho'))
 
@@ -77,8 +79,6 @@ def add_carrinho():
     Produto.add_carrinho(produto, usuario_id)
     
     return redirect(url_for('carrinho'))
-
-
 
 
 @app.route("/add_favoritos", methods=['POST'])
@@ -179,6 +179,7 @@ def logout():
 @app.route("/index")
 def index():
     return render_template('index.html')
+
 
 @app.route("/perfil")
 def perfil():
