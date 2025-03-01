@@ -113,6 +113,25 @@
                 });
             });
         });
+        
+        document.addEventListener("DOMContentLoaded", function () {
+            let messages = document.querySelectorAll(".flash-info, .flash-error");
+            if (messages.length > 1) {
+                messages.forEach((msg, index) => {
+                    if (index < messages.length - 1) {
+                        msg.remove();  // Remove todas as mensagens, exceto a última
+                    }
+                });
+            }
+        });
+    function viewSenha(){
+      var tipo = document.getElementById("senha")
+      if (tipo.type == "password") {
+        tipo.type = "text";
+      }else{
+        tipo.type = "password";
+      }
+    }
         </script>
         
             

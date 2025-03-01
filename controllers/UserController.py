@@ -5,6 +5,7 @@ from ..models.models import User, Produto, Compra
 from .. import app, login_manager
 
 
+
 @login_manager.user_loader
 def load_user(usuario_id):
     return User.get(usuario_id)
@@ -21,6 +22,7 @@ def carrinho():
         total = 0
     else:
         total = float(valor[0][0])
+    flash('','sucess')
     return render_template('carrinho.html', user_id=usuario_id, valor=total, carrinho=carrinho)
     
     

@@ -81,6 +81,7 @@ body{
 .nav-links a:hover{
     color:rgb(162, 0, 67) ;
     border-bottom: 1px solid black;
+    padding: 8px;
 }
 
 .nav-links a {
@@ -179,7 +180,7 @@ body{
     right: 10px;
 }
 
-.secao-produtos {
+.secao-produtos, .secao-produtos-relacionados {
     padding: 20px;
     text-align: center;
 }
@@ -304,11 +305,11 @@ body{
 }
 
 .logo img {
-    width: 200px; 
-    height: auto; 
+    width: 250px; 
+    height: 50px; 
 }
 .logo-login img {
-    width: 100px; 
+    width: 150px; 
     height: auto; 
 }
 
@@ -617,13 +618,16 @@ body{
     text-decoration: none;
     color: black;
 }
-.error {
+.error, .error-login {
     width: 100%;
     display: flex;
     justify-content:center ;
 }
 .error p{
     color:#a20043;
+}
+.error-login p{
+    color:white;
 }
 
 @media (max-width: 480px) {
@@ -653,7 +657,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 100vh;
     padding: 20px;
     color: white;
    

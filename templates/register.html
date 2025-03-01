@@ -14,6 +14,16 @@
     <section class="register-container">
         <div class="login-box">
             <h2>Registro</h2>
+            <br>
+            <div class="error-login">
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="flash-{{ category }}"><p>{{ message }}</p></div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
             <form action="#" method="POST">
                 <label for="nome" class="form-label">Nome Completo</label>
                 <input type="text" name="nome" id="nome" class="form-control" required>
@@ -46,7 +56,7 @@
             </form>
             <p>Já tem uma conta? <a href="{{url_for('login')}}">Faça seu login</a></p>
             <div class="logo-login">
-                <img src="../static/images/logo.png" alt="Logo">
+                <img src="../static/images/logo2.png" alt="Logo">
             </div>
         </div>
     </section>
@@ -89,6 +99,57 @@
                 tipo.type = "password";
             }
             }
+            document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".incremento").forEach(button => {
+                button.addEventListener("click", function() {
+                    let productId = this.getAttribute("data-id");
+                    let quantityInput = document.getElementById(`quantidade-${productId}`);
+                    let precoElement = document.getElementById(`preco-${productId}`);
+        
+
+                    let precoUnitario = parseFloat(precoElement.getAttribute("data-unit-price"));
+        
+                    let quantidadeAtual = parseInt(quantityInput.value);
+                    quantidadeAtual++;
+                    quantityInput.value = quantidadeAtual;
+        
+
+                    let novoPreco = (precoUnitario * quantidadeAtual).toFixed(2);
+                    precoElement.innerText = `R$${novoPreco}`;
+                });
+            });
+        
+            document.querySelectorAll(".decremento").forEach(button => {
+                button.addEventListener("click", function() {
+                    let productId = this.getAttribute("data-id");
+                    let quantityInput = document.getElementById(`quantidade-${productId}`);
+                    let precoElement = document.getElementById(`preco-${productId}`);
+        
+
+                    let precoUnitario = parseFloat(precoElement.getAttribute("data-unit-price"));
+        
+                    let quantidadeAtual = parseInt(quantityInput.value);
+                    if (quantidadeAtual > 1) {
+                        quantidadeAtual--;
+                        quantityInput.value = quantidadeAtual;
+
+                        let novoPreco = (precoUnitario * quantidadeAtual).toFixed(2);
+                        precoElement.innerText = `R$${novoPreco}`;
+                    }
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+        let messages = document.querySelectorAll(".flash-info, .flash-error");
+        if (messages.length > 1) {
+            messages.forEach((msg, index) => {
+                if (index < messages.length - 1) {
+                    msg.remove();  // Remove todas as mensagens, exceto a última
+                }
+            });
+        }
+    });
     </script>
 </body>
 </html>
